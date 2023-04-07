@@ -17,7 +17,7 @@ public class MyReunionAdapter {
         public ImageView iv_icone_reunion;
         public Button bt_suppr_reunion;
         public ViewHolder(@NonNull View itemView) {
-            super();
+            super(itemView);
 
             tv_nom_reunion = (TextView) itemView.findViewById(R.id.nom_reunion);
             tv_participants = (TextView) itemView.findViewById(R.id.participants);
