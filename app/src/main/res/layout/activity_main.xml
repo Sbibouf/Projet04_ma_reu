@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,6 +23,7 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="-25dp"
         tools:layout_editor_absoluteY="-16dp"
+        app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/fragment_reunion_">
 
     </androidx.recyclerview.widget.RecyclerView>
