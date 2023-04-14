@@ -17,11 +17,12 @@ import java.util.List;
 public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.ViewHolder> {
 
     private FragmentReunionBinding mFragmentReunionBinding;
-    private final int nb_frag = 5;
-    private List<Integer> reunions;
+    private FakeReunionApiService apiservice;
+    private List<Reunion> mReunions;
 
-    public MyReunionAdapter(){
+    public MyReunionAdapter(List<Reunion> items){
 
+        mReunions = items;
 
     }
     @NonNull
@@ -35,12 +36,14 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.changer_texte();
+        Reunion reunion = mReunions.get(position);
+        holder.tv_nom_reunion.setText(reunion.getNom_reunion());
+        holder.tv_participants.setText(reunion.getParticipants().toString());
     }
 
     @Override
     public int getItemCount() {
-        return nb_frag;
+        return mReunions.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

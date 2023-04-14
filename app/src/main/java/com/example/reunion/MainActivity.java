@@ -22,12 +22,13 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> mReunions;
     private ActivityMainBinding binding;
     FloatingActionButton mFloatingActionButton;
+    private FakeReunionApiService mApiService = new FakeReunionApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        adapter = new MyReunionAdapter();
+        adapter = new MyReunionAdapter(mApiService.getReunions());
         setContentView(binding.getRoot());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));

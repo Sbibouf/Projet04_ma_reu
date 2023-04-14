@@ -13,8 +13,14 @@ public class Reunion {
 
     //Constructeur
 
-    public Reunion() {
+    public Reunion(String nom, int jour, int mois, int annee, int numero_salle, List<String> participant ) {
 
+        nom_reunion = nom;
+        date_jour = jour;
+        date_mois = mois;
+        date_annee = annee;
+        num_salle = numero_salle;
+        participants = participant;
     }
 
 
