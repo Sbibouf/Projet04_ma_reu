@@ -1,11 +1,11 @@
-package com.example.reunion;
+package com.example.reunion.model;
 
 import java.util.List;
 
 public class Reunion {
 
     private int heures, minutes, date_jour, date_mois, date_annee, num_salle, nb_participants, duree_reunion;
-    private String nom_reunion, lieu_reunion;
+    private String nom_reunion, sujet_reunion;
 
 
     private List<String> participants;
@@ -77,12 +77,12 @@ public class Reunion {
         this.nom_reunion = nom_reunion;
     }
 
-    public String getLieu_reunion() {
-        return lieu_reunion;
+    public String getSujet_reunion() {
+        return sujet_reunion;
     }
 
-    public void setLieu_reunion(String lieu_reunion) {
-        this.lieu_reunion = lieu_reunion;
+    public void setSujet_reunion(String lieu_reunion) {
+        this.sujet_reunion = lieu_reunion;
     }
 
     public List<String> getParticipants() {

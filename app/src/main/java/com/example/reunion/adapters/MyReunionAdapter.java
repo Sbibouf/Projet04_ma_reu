@@ -1,9 +1,7 @@
-package com.example.reunion;
+package com.example.reunion.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reunion.databinding.FragmentReunionBinding;
+import com.example.reunion.model.Reunion;
+import com.example.reunion.service.FakeReunionApiService;
 
 import java.util.List;
 

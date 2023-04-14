@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Reunion"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".vue.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Ajouter_reunion_activity"></activity>
+        <activity android:name=".vue.Ajouter_reunion_activity"
+            android:parentActivityName=".vue.MainActivity"
+            >
+
+        </activity>
     </application>
 
 </manifest>

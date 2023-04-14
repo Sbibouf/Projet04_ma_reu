@@ -1,4 +1,4 @@
-package com.example.reunion;
+package com.example.reunion.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -9,10 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.reunion.adapters.MyReunionAdapter;
 import com.example.reunion.databinding.ActivityMainBinding;
+import com.example.reunion.service.FakeReunionApiService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {

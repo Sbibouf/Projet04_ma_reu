@@ -1,4 +1,6 @@
-package com.example.reunion;
+package com.example.reunion.service;
+
+import com.example.reunion.model.Reunion;
 
 import java.util.List;
 

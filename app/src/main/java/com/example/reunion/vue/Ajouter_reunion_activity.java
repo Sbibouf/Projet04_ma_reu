@@ -1,18 +1,21 @@
-package com.example.reunion;
+package com.example.reunion.vue;
 
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reunion.databinding.AjouterReunionBinding;
 
+import java.sql.Time;
 import java.util.Calendar;
+import java.util.Objects;
+import java.util.Timer;
 
 public class Ajouter_reunion_activity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = AjouterReunionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         binding.imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +37,7 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
                 mMonth = cal.get(Calendar.MONTH);
                 mYear = cal.get(Calendar.YEAR);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(Ajouter_reunion_activity.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
 
