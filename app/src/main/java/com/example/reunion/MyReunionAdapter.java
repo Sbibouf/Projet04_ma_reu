@@ -10,15 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.reunion.databinding.ActivityMainBinding;
 import com.example.reunion.databinding.FragmentReunionBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.ViewHolder> {
 
-    private ActivityMainBinding mActivityMainBinding;
     private FragmentReunionBinding mFragmentReunionBinding;
     private final int nb_frag = 5;
     private List<Integer> reunions;
@@ -32,15 +29,12 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         FragmentReunionBinding itemBinding = FragmentReunionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        //View view = LayoutInflater.from(parent.getContext())
-                //.inflate(R.layout.fragment_reunion_, parent, false);
         return new ViewHolder(itemBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        //mFragmentReunionBinding.nomReunion.setText("Reunion Fr");
         holder.changer_texte();
     }
 
@@ -58,10 +52,8 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
 
         public ViewHolder(@NonNull FragmentReunionBinding itemBinding) {
             super(itemBinding.getRoot());
+            mFragmentReunionBinding = itemBinding;
             iv_icone_reunion = itemBinding.iconeReunion;
-            //iv_icone_reunion = view.findViewById(R.id.icone_reunion);
-            //tv_nom_reunion = view.findViewById(R.id.nom_reunion);
-            //tv_participants = view.findViewById(R.id.participants);
             tv_participants = itemBinding.participants;
             tv_nom_reunion = itemBinding.nomReunion;
 

@@ -43,8 +43,8 @@ public class Reunion_Fragment extends Fragment {
         // Inflate the layout for this fragment
         //mFragmentReunionBinding = FragmentReunionBinding.inflate(inflater, container, false);
         //View view = mFragmentReunionBinding.getRoot();
-        View view = inflater.inflate(R.layout.fragment_reunion_, container, false);
-        return view;
+       // View view = inflater.inflate(R.layout.fragment_reunion_, container, false);
+        return null;
     }
     //private void initView() {
       //  adapter = new MyReunionAdapter();

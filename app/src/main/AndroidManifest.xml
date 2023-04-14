@@ -25,6 +25,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".Ajouter_reunion_activity"></activity>
     </application>
 
 </manifest>

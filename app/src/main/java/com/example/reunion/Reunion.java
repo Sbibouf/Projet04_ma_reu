@@ -1,18 +1,20 @@
 package com.example.reunion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Reunion {
 
-    private int heures, minutes, date_jour, date_mois, date_annee;
+    private int heures, minutes, date_jour, date_mois, date_annee, num_salle, nb_participants, duree_reunion;
     private String nom_reunion, lieu_reunion;
+
+
     private List<String> participants;
 
 
     //Constructeur
 
     public Reunion() {
+
     }
 
 
@@ -84,4 +86,16 @@ public class Reunion {
     public void setParticipants(List<String> participants) {
         this.participants = participants;
     }
+
+    public int getNum_salle() { return num_salle; }
+
+    public void setNum_salle(int num_salle) { this.num_salle = num_salle; }
+
+    public int getNb_participants() { return nb_participants; }
+
+    public void setNb_participants(int nb_participants) { this.nb_participants = nb_participants; }
+
+    public int getDuree_reunion() { return duree_reunion; }
+
+    public void setDuree_reunion(int duree_reunion) { this.duree_reunion = duree_reunion; }
 }
