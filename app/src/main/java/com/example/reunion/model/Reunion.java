@@ -5,7 +5,7 @@ import java.util.List;
 public class Reunion {
 
     private int heures, minutes, date_jour, date_mois, date_annee, num_salle, nb_participants, duree_reunion;
-    private String nom_reunion, sujet_reunion;
+    private String nom_reunion, sujet_reunion, date_reu, heure_reu, salle_reu;
 
 
     private List<String> participants;
@@ -13,14 +13,14 @@ public class Reunion {
 
     //Constructeur
 
-    public Reunion(String nom, int jour, int mois, int annee, int numero_salle, List<String> participant ) {
+    public Reunion(String nom, String sujet, String date, String heure, String salle ) {
 
         nom_reunion = nom;
-        date_jour = jour;
-        date_mois = mois;
-        date_annee = annee;
-        num_salle = numero_salle;
-        participants = participant;
+        sujet_reunion = sujet;
+        date_reu = date;
+        heure_reu = heure;
+        salle_reu = salle;
+        //participants = participant;
     }
 
 
@@ -28,6 +28,18 @@ public class Reunion {
     //And
     //Setters
 
+
+    public String getDate_reu() {return date_reu;}
+
+    public void setDate_reu(String date_reu) {this.date_reu = date_reu;}
+
+    public String getHeure_reu() {return heure_reu;}
+
+    public void setHeure_reu(String heure_reu) {this.heure_reu = heure_reu;}
+
+    public String getSalle_reu() {return salle_reu;}
+
+    public void setSalle_reu(String salle_reu) {this.salle_reu = salle_reu;}
 
     public int getHeures() {
         return heures;

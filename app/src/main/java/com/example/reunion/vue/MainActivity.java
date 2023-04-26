@@ -1,13 +1,13 @@
 package com.example.reunion.vue;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 
 import com.example.reunion.adapters.MyReunionAdapter;
 import com.example.reunion.databinding.ActivityMainBinding;
@@ -18,34 +18,54 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
+
     private MyReunionAdapter adapter;
-    private List<Integer> mReunions;
     private ActivityMainBinding binding;
-    FloatingActionButton mFloatingActionButton;
     private FakeReunionApiService mApiService = new FakeReunionApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        InitUI();
+        ajouter_reunion();
+
+
+    }
+
+    public void InitUI() {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        adapter = new MyReunionAdapter(mApiService.getReunions());
         setContentView(binding.getRoot());
+        adapter = new MyReunionAdapter(mApiService.getReunions());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         binding.recyclerView.setAdapter(adapter);
-        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ajouter_reunion();
-            }
-        });
     }
 
-    public void ajouter_reunion(){
+    public void refresh(){
 
-        Intent intent = new Intent(MainActivity.this, Ajouter_reunion_activity.class);
-        startActivity(intent);
+        adapter.updateList(mApiService.getReunions());
+    }
 
+
+
+    public void ajouter_reunion() {
+
+        binding.floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    Intent intent = new Intent(MainActivity.this, Ajouter_reunion_activity.class);
+                    startActivity(intent);
+
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
     }
 }

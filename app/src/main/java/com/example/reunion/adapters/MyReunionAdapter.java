@@ -12,6 +12,7 @@ import com.example.reunion.databinding.FragmentReunionBinding;
 import com.example.reunion.model.Reunion;
 import com.example.reunion.service.FakeReunionApiService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.ViewHolder> {
@@ -38,7 +39,7 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
 
         Reunion reunion = mReunions.get(position);
         holder.tv_nom_reunion.setText(reunion.getNom_reunion());
-        holder.tv_participants.setText(reunion.getParticipants().toString());
+        //holder.tv_participants.setText(reunion.getParticipants().toString());
     }
 
     @Override
@@ -62,9 +63,9 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
 
 
         }
-        public void changer_texte(){
+    }
+    public void updateList(List<Reunion> newList) {
 
-            tv_nom_reunion.setText("Reunion FR");
-        }
+        this.mReunions = new ArrayList<>(newList);
     }
 }
