@@ -7,12 +7,12 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reunion.adapters.MyReunionAdapter;
 import com.example.reunion.databinding.ActivityMainBinding;
+import com.example.reunion.model.Reunion;
 import com.example.reunion.service.FakeReunionApiService;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.reunion.service.ReunionApiService;
 
 import java.util.List;
 
@@ -21,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
     private MyReunionAdapter adapter;
     private ActivityMainBinding binding;
-    private FakeReunionApiService mApiService = new FakeReunionApiService();
+    private ReunionApiService mApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         InitUI();
         ajouter_reunion();
 
@@ -33,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void InitUI() {
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mApiService = new FakeReunionApiService();
         adapter = new MyReunionAdapter(mApiService.getReunions());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(MainActivity.this, Ajouter_reunion_activity.class);
+                    Intent intent = new Intent(MainActivity.this, AjouterReunionActivity.class);
                     startActivity(intent);
 
             }
@@ -66,6 +67,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        refresh();
+        InitUI();
     }
 }

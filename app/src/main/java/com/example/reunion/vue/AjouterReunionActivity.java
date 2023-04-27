@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.reunion.DI.DI;
 import com.example.reunion.R;
 import com.example.reunion.databinding.AjouterReunionBinding;
 import com.example.reunion.model.Reunion;
@@ -23,12 +22,14 @@ import com.example.reunion.service.ReunionApiService;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class Ajouter_reunion_activity extends AppCompatActivity {
+public class AjouterReunionActivity extends AppCompatActivity {
 
     AjouterReunionBinding binding;
     private int mDate, mMonth, mYear, mHour, mMin;
     String[] liste;
     private ReunionApiService mApiService;
+    ArrayAdapter<String> adapter;
+    String[] listecheck = {"Alex@lamzone.fr","Dennis@lamzone.fr", "Patrick@lamzone.fr", "François@lamzone.fr", "Emilie@lamzone.fr", "Rachel@lamzone.fr", "Marie@lamzone.fr"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
         binding = AjouterReunionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        mApiService = DI.getReunionApiService();
+        mApiService = new FakeReunionApiService();
         Init_formulaire();
         Save_Reunion();
 
@@ -60,7 +61,7 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
                 mDate = cal.get(Calendar.DATE);
                 mMonth = cal.get(Calendar.MONTH);
                 mYear = cal.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Ajouter_reunion_activity.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AjouterReunionActivity.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
@@ -82,7 +83,7 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
                 final Calendar cal = Calendar.getInstance();
                 mHour = cal.get(Calendar.HOUR);
                 mMin = cal.get(Calendar.MINUTE);
-                TimePickerDialog timePickerDialog = new TimePickerDialog(Ajouter_reunion_activity.this, android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AjouterReunionActivity.this, android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -95,12 +96,17 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
             }
         });
 
+        //* Affichage de la liste des participants a selectionner
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, listecheck);
+        binding.participants.setAdapter(adapter);
+
     }
 
     public void Save_Reunion() {
 
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OnSubmit();
@@ -122,27 +128,27 @@ public class Ajouter_reunion_activity extends AppCompatActivity {
 
         if (nom.isEmpty()) {
 
-            binding.editTextTextPersonName.setError("Veuillez entrer un nom");
+            binding.etNom.setError("Veuillez entrer un nom");
             return;
         }
         if (sujet.isEmpty()) {
 
-            binding.editTextTextMultiLine.setError("Veuillez entrer un sujet");
+            binding.etSujet.setError("Veuillez entrer un sujet");
             return;
         }
         if (date.isEmpty()) {
 
-            binding.editTextTextPersonName2.setError("Veuillez choisir une date");
+            binding.etDate.setError("Veuillez choisir une date");
             return;
         }
         if (heure.isEmpty()) {
 
-            binding.editTextTextPersonName3.setError("Veuillez choisir une heure");
+            binding.etHeure.setError("Veuillez choisir une heure");
             return;
         }
         if (salle.isEmpty()) {
 
-            binding.numSalle.setError("Veuillez choisir une salle");
+            binding.etSalle.setError("Veuillez choisir une salle");
             return;
         }
 

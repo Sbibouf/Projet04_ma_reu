@@ -6,27 +6,16 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-        <TextView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Nouvelle réunion"
-            android:textSize="25dp"
-             />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/et_nom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
+            app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -37,7 +26,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/et_sujet"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
@@ -45,7 +34,7 @@
             android:gravity="start|top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+            app:layout_constraintTop_toBottomOf="@+id/et_nom">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -57,7 +46,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/et_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -66,8 +55,8 @@
         app:endIconDrawable="@drawable/ic_calendrier"
         app:endIconMode="custom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
-        app:layout_constraintEnd_toStartOf="@id/editTextTextPersonName3">
+        app:layout_constraintTop_toBottomOf="@+id/et_sujet"
+        app:layout_constraintEnd_toStartOf="@id/et_heure">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/date_reu"
@@ -78,7 +67,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/et_heure"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -87,8 +76,8 @@
         app:endIconDrawable="@drawable/ic_clock"
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editTextTextPersonName2"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine">
+        app:layout_constraintStart_toEndOf="@id/et_date"
+        app:layout_constraintTop_toBottomOf="@id/et_sujet">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/heure_reu"
@@ -101,13 +90,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:id="@+id/num_salle"
+        android:id="@+id/et_salle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2">
+        app:layout_constraintTop_toBottomOf="@+id/et_date">
 
         <AutoCompleteTextView
             android:id="@+id/numero_salle"
@@ -119,8 +108,33 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/part"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_save">
+
+        <ListView
+            android:id="@+id/participants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="emailAddress"
+            android:choiceMode="multipleChoice">
+
+        </ListView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+        android:id="@+id/bt_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="true"
@@ -129,7 +143,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num_salle" />
+        app:layout_constraintTop_toBottomOf="@id/et_salle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
