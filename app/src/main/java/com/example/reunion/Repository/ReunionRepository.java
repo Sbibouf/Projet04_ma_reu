@@ -2,16 +2,31 @@ package com.example.reunion.Repository;
 
 
 import com.example.reunion.model.Reunion;
+import com.example.reunion.service.FakeReunionApiService;
 import com.example.reunion.service.ReunionApiService;
 
 import java.util.List;
 
 public class ReunionRepository {
 
-    private final ReunionApiService mReunionApiService;
+    private ReunionApiService mReunionApiService;
+    private static ReunionRepository instance = null;
 
-    public ReunionRepository(ReunionApiService reunionApiService) {
-        mReunionApiService = reunionApiService;
+    private ReunionRepository() {
+        mReunionApiService= new FakeReunionApiService();
+    }
+
+
+    public static ReunionRepository getInstance(){
+        if(instance==null){
+            synchronized (ReunionRepository.class){
+                if(instance==null){
+                    instance = new ReunionRepository();
+                }
+            }
+
+        }
+        return instance;
     }
 
     public List<Reunion> getReunions() {

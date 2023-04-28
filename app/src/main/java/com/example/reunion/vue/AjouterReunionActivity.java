@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reunion.R;
+import com.example.reunion.Repository.ReunionRepository;
 import com.example.reunion.databinding.AjouterReunionBinding;
 import com.example.reunion.model.Reunion;
 import com.example.reunion.service.FakeReunionApiService;
@@ -23,12 +24,11 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class AjouterReunionActivity extends AppCompatActivity {
-
     AjouterReunionBinding binding;
     private int mDate, mMonth, mYear, mHour, mMin;
     String[] liste;
-    private ReunionApiService mApiService;
     ArrayAdapter<String> adapter;
+    private ReunionRepository mReunionRepository;
     String[] listecheck = {"Alex@lamzone.fr","Dennis@lamzone.fr", "Patrick@lamzone.fr", "François@lamzone.fr", "Emilie@lamzone.fr", "Rachel@lamzone.fr", "Marie@lamzone.fr"};
 
     @Override
@@ -37,14 +37,15 @@ public class AjouterReunionActivity extends AppCompatActivity {
         binding = AjouterReunionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        mApiService = new FakeReunionApiService();
-        Init_formulaire();
-        Save_Reunion();
+        getSupportActionBar().setTitle("Nouvelle Réunion");
+        mReunionRepository = ReunionRepository.getInstance();
+        initFormulaire();
+        saveReunion();
 
     }
 
 
-    public void Init_formulaire() {
+    public void initFormulaire() {
 
         liste = getResources().getStringArray(R.array.Numero_de_salle);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste);
@@ -103,7 +104,7 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
     }
 
-    public void Save_Reunion() {
+    public void saveReunion() {
 
 
         binding.btSave.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +153,8 @@ public class AjouterReunionActivity extends AppCompatActivity {
             return;
         }
 
-        mApiService.createReunion(new Reunion(nom, sujet, date, heure, salle));
+        mReunionRepository.createReunion(new Reunion(nom, sujet, date, heure, salle));
+       // mApiService.createReunion(new Reunion(nom, sujet, date, heure, salle));
         Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
         finish();
     }

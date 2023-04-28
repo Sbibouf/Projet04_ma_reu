@@ -1,6 +1,7 @@
 package com.example.reunion.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Reunion {
 
@@ -27,7 +28,6 @@ public class Reunion {
     //Getters
     //And
     //Setters
-
 
     public String getDate_reu() {return date_reu;}
 
@@ -116,4 +116,6 @@ public class Reunion {
     public int getDuree_reunion() { return duree_reunion; }
 
     public void setDuree_reunion(int duree_reunion) { this.duree_reunion = duree_reunion; }
+
+
 }

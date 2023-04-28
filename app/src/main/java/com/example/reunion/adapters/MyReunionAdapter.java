@@ -64,8 +64,4 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
 
         }
     }
-    public void updateList(List<Reunion> newList) {
-
-        this.mReunions = new ArrayList<>(newList);
-    }
 }
