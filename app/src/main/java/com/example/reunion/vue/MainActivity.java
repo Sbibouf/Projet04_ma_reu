@@ -23,16 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
     private MyReunionAdapter adapter;
     private ActivityMainBinding binding;
-    MainViewModel mMainViewModel;
-    List<Reunion> mReunions = new ArrayList<>();
-    private ReunionRepository mReunionRepository;
+    private MainViewModel mMainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initViewModel();
+        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         initUI();
         ajouterReunion();
 
@@ -40,24 +38,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initUI() {
-        //mReunionRepository = ReunionRepository.getInstance();
+
         adapter = new MyReunionAdapter(mMainViewModel.getReunions());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         binding.recyclerView.setAdapter(adapter);
     }
 
-    public void initViewModel() {
-
-        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        //mMainViewModel.fetchReunion();
-        //mMainViewModel.getMutableLiveData().observe(this, reunions -> {
-        //    mReunionRepository.getReunions().clear();
-        //    mReunionRepository.getReunions().addAll(reunions);
-        //    binding.recyclerView.getAdapter().notifyDataSetChanged();
-        //});
-
-    }
 
     public void ajouterReunion() {
 
@@ -70,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override

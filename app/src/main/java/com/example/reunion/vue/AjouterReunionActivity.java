@@ -31,7 +31,6 @@ public class AjouterReunionActivity extends AppCompatActivity {
     private int mDate, mMonth, mYear, mHour, mMin;
     String[] liste;
     ArrayAdapter<String> adapter;
-    private ReunionRepository mReunionRepository;
     AjouterReunionViewModel mAjouterReunionViewModel;
     String[] listecheck = {"Alex@lamzone.fr","Dennis@lamzone.fr", "Patrick@lamzone.fr", "François@lamzone.fr", "Emilie@lamzone.fr", "Rachel@lamzone.fr", "Marie@lamzone.fr"};
 
@@ -43,7 +42,6 @@ public class AjouterReunionActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Nouvelle Réunion");
-        mReunionRepository = ReunionRepository.getInstance();
         initFormulaire();
         saveReunion();
 
@@ -118,8 +116,6 @@ public class AjouterReunionActivity extends AppCompatActivity {
                 OnSubmit();
             }
         });
-
-
     }
 
     public void OnSubmit() {
