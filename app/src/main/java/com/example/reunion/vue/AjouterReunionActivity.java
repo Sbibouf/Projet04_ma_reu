@@ -12,6 +12,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.reunion.R;
 import com.example.reunion.Repository.ReunionRepository;
@@ -19,7 +20,9 @@ import com.example.reunion.databinding.AjouterReunionBinding;
 import com.example.reunion.model.Reunion;
 import com.example.reunion.service.FakeReunionApiService;
 import com.example.reunion.service.ReunionApiService;
+import com.example.reunion.viewModel.AjouterReunionViewModel;
 
+import java.security.Provider;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -29,12 +32,14 @@ public class AjouterReunionActivity extends AppCompatActivity {
     String[] liste;
     ArrayAdapter<String> adapter;
     private ReunionRepository mReunionRepository;
+    AjouterReunionViewModel mAjouterReunionViewModel;
     String[] listecheck = {"Alex@lamzone.fr","Dennis@lamzone.fr", "Patrick@lamzone.fr", "François@lamzone.fr", "Emilie@lamzone.fr", "Rachel@lamzone.fr", "Marie@lamzone.fr"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = AjouterReunionBinding.inflate(getLayoutInflater());
+        mAjouterReunionViewModel = new ViewModelProvider(this).get(AjouterReunionViewModel.class);
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Nouvelle Réunion");
@@ -130,33 +135,35 @@ public class AjouterReunionActivity extends AppCompatActivity {
         if (nom.isEmpty()) {
 
             binding.etNom.setError("Veuillez entrer un nom");
-            return;
+
         }
         if (sujet.isEmpty()) {
 
             binding.etSujet.setError("Veuillez entrer un sujet");
-            return;
+
         }
         if (date.isEmpty()) {
 
             binding.etDate.setError("Veuillez choisir une date");
-            return;
+
         }
         if (heure.isEmpty()) {
 
             binding.etHeure.setError("Veuillez choisir une heure");
-            return;
+
         }
         if (salle.isEmpty()) {
 
             binding.etSalle.setError("Veuillez choisir une salle");
-            return;
+
+        }
+        else {
+            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, heure, salle));
+            Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
-        mReunionRepository.createReunion(new Reunion(nom, sujet, date, heure, salle));
-       // mApiService.createReunion(new Reunion(nom, sujet, date, heure, salle));
-        Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
-        finish();
+
     }
 
 

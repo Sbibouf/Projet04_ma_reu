@@ -32,4 +32,8 @@ public class MainViewModel extends ViewModel {
         mMutableLiveData.setValue(reunion);
 
     }
+    public List<Reunion> getReunions(){
+        return mReunionRepository.getReunions();
+
+    }
 }

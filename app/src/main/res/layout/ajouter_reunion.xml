@@ -22,13 +22,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/nom_reu"
             android:hint="Nom"
+            android:inputType="textPersonName"
             />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_sujet"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:gravity="start|top"
@@ -38,7 +39,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:hint="Sujet"
                 android:id="@+id/sujet_reu"
                 android:inputType="textMultiLine"
@@ -115,17 +116,18 @@
         android:id="@+id/part"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_save">
+        app:layout_constraintTop_toBottomOf="@id/et_salle">
 
-        <ListView
+        <AutoCompleteTextView
             android:id="@+id/participants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:hint="Participants"
             android:autofillHints="emailAddress"
             android:choiceMode="multipleChoice">
 
-        </ListView>
+        </AutoCompleteTextView>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,7 +145,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_salle"
+        app:layout_constraintTop_toBottomOf="@id/part"
         android:backgroundTint="@color/cardview_dark_background"/>
 
 
