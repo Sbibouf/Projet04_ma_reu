@@ -36,4 +36,7 @@ public class MainViewModel extends ViewModel {
         return mReunionRepository.getReunions();
 
     }
+    public void supprimer_Reunion(Reunion reunion){
+        mReunionRepository.deleteReunion(reunion);
+    }
 }

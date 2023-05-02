@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_reu_rouge" >
+            app:srcCompat="@drawable/circle">
 
         </ImageView>
 
@@ -37,17 +37,64 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Reunion A - 14h00 - Peach"
+            android:text="nom"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/icone_reunion"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <TextView
+            android:id="@+id/tv_tiret1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/nom_reunion"
+            app:layout_constraintStart_toEndOf="@id/nom_reunion"
+            android:layout_marginStart="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/tv_heure_reunion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/nom_reunion"
+            app:layout_constraintStart_toEndOf="@id/tv_tiret1"
+            android:layout_marginStart="8dp"
+            android:text="heure"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_tiret2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_heure_reunion"
+            app:layout_constraintStart_toEndOf="@id/tv_heure_reunion"
+            android:layout_marginStart="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/tv_salle_reunion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/tv_heure_reunion"
+            app:layout_constraintStart_toEndOf="@id/tv_tiret2"
+            android:layout_marginStart="8dp"
+            android:text="salle"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@null"
+            android:clickable="true"
+            android:contentDescription="delete_button"
+            android:focusable="true"
             android:src="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="@+id/participants"
             app:layout_constraintEnd_toEndOf="parent"
