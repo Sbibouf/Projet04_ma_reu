@@ -15,4 +15,17 @@
         <item>Salle 10</item>
 
     </string-array>
+    <string-array name="mail_participants">
+        <item>Alex@lamzone.fr</item>
+        <item>Paul@lamzone.fr</item>
+        <item>Maxime@lamzone.fr</item>
+        <item>Amandine@lamzone.fr</item>
+        <item>Luc@lamzone.fr</item>
+        <item>Viviane@lamzone.fr</item>
+        <item>François@lamzone.fr</item>
+        <item>Bernard@lamzone.fr</item>
+        <item>Jean@lamzone.fr</item>
+        <item>Yves@lamzone.fr</item>
+
+    </string-array>
 </resources>

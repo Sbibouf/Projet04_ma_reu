@@ -118,16 +118,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_salle">
 
-        <AutoCompleteTextView
+        <MultiAutoCompleteTextView
             android:id="@+id/participants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Participants"
-            android:autofillHints="emailAddress"
-            android:choiceMode="multipleChoice">
+            android:autofillHints="emailAddress" />
 
-        </AutoCompleteTextView>
 
     </com.google.android.material.textfield.TextInputLayout>
 

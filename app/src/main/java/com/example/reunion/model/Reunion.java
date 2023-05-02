@@ -6,22 +6,18 @@ import java.util.Objects;
 public class Reunion {
 
     private int heures, minutes, date_jour, date_mois, date_annee, num_salle, nb_participants, duree_reunion;
-    private String nom_reunion, sujet_reunion, date_reu, heure_reu, salle_reu;
-
-
-    private List<String> participants;
-
+    private String nom_reunion, sujet_reunion, date_reu, heure_reu, salle_reu, participants;
 
     //Constructeur
 
-    public Reunion(String nom, String sujet, String date, String heure, String salle ) {
+    public Reunion(String nom, String sujet, String date, String heure, String salle, String participant ) {
 
         nom_reunion = nom;
         sujet_reunion = sujet;
         date_reu = date;
         heure_reu = heure;
         salle_reu = salle;
-        //participants = participant;
+        participants = participant;
     }
 
 
@@ -97,11 +93,11 @@ public class Reunion {
         this.sujet_reunion = lieu_reunion;
     }
 
-    public List<String> getParticipants() {
+    public String getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<String> participants) {
+    public void setParticipants(String participants) {
         this.participants = participants;
     }
 

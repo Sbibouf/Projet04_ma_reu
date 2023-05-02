@@ -6,8 +6,10 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -29,11 +31,9 @@ import java.util.Objects;
 public class AjouterReunionActivity extends AppCompatActivity {
     AjouterReunionBinding binding;
     private int mDate, mMonth, mYear, mHour, mMin;
-    String[] liste;
+    String[] liste_salle, liste_participants;
     ArrayAdapter<String> adapter;
     AjouterReunionViewModel mAjouterReunionViewModel;
-    String[] listecheck = {"Alex@lamzone.fr","Dennis@lamzone.fr", "Patrick@lamzone.fr", "François@lamzone.fr", "Emilie@lamzone.fr", "Rachel@lamzone.fr", "Marie@lamzone.fr"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +50,8 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
     public void initFormulaire() {
 
-        liste = getResources().getStringArray(R.array.Numero_de_salle);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste);
+        liste_salle = getResources().getStringArray(R.array.Numero_de_salle);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste_salle);
         binding.numeroSalle.setAdapter(arrayAdapter);
 
         //* Recuperation de la date
@@ -100,10 +100,12 @@ public class AjouterReunionActivity extends AppCompatActivity {
             }
         });
 
-        //* Affichage de la liste des participants a selectionner
+        //* Autocompletion de la liste des participants a selectionner
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, listecheck);
+        liste_participants = getResources().getStringArray(R.array.mail_participants);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, liste_participants);
         binding.participants.setAdapter(adapter);
+        binding.participants.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
     }
 
@@ -126,6 +128,7 @@ public class AjouterReunionActivity extends AppCompatActivity {
         String date = binding.dateReu.getText().toString();
         String heure = binding.heureReu.getText().toString();
         String salle = binding.numeroSalle.getText().toString();
+        String participants = binding.participants.getText().toString();
 
 
         if (nom.isEmpty()) {
@@ -154,7 +157,7 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
         }
         else {
-            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, heure, salle));
+            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, heure, salle, participants));
             Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
             finish();
         }

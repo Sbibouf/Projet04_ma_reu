@@ -50,6 +50,9 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
         mReunionRepository = ReunionRepository.getInstance();
         Reunion reunion = mReunions.get(position);
         holder.tv_nom_reunion.setText(reunion.getNom_reunion());
+        holder.tv_heure.setText(reunion.getHeure_reu());
+        holder.tv_salle.setText(reunion.getSalle_reu());
+        holder.tv_participants.setText(reunion.getParticipants());
         if(reunion.getSalle_reu()=="Salle 1"){
             holder.iv_icone_reunion.setColorFilter(Color.argb(140,250,255,75));
         }
@@ -69,7 +72,7 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView iv_icone_reunion;
-        private TextView tv_participants, tv_nom_reunion;
+        private TextView tv_participants, tv_nom_reunion, tv_heure, tv_salle;
         private ImageButton ib_supprimer;
 
 
@@ -81,6 +84,8 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
             iv_icone_reunion = itemBinding.iconeReunion;
             tv_participants = itemBinding.participants;
             tv_nom_reunion = itemBinding.nomReunion;
+            tv_heure = itemBinding.tvHeureReunion;
+            tv_salle = itemBinding.tvSalleReunion;
 
 
         }

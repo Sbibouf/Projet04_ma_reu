@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         initUI();
         ajouterReunion();
-        //supprimerReunion();
 
 
     }
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
 
         adapter = new MyReunionAdapter(mMainViewModel.getReunions(),this );
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+        //binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         binding.recyclerView.setAdapter(adapter);
     }
 
@@ -62,18 +61,6 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
 
             }
         });
-    }
-    public void supprimerReunion(){
-
-
-        ItemClickSupport.addTo(binding.recyclerView, R.layout.fragment_reunion_)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                   Reunion reunion = adapter.getReunions(position);
-                   mMainViewModel.supprimer_Reunion(reunion);
-                    }
-                });
     }
 
     @Override
