@@ -70,7 +70,21 @@ public class AjouterReunionActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
 
-                        binding.dateReu.setText((date + "-" + month + "-" + year));
+                        month = month+1;
+                        if(date<10){
+                            binding.dateReu.setText(("0"+date + "-" + month + "-" + year));
+                        }
+                        if(month<10){
+                            binding.dateReu.setText((date + "-" + "0"+month + "-" + year));
+                        }
+
+                        if(month<10&&date<10){
+                            binding.dateReu.setText(("0"+date + "-" + "0"+month + "-" + year));
+                        }
+                        else {
+                            binding.dateReu.setText((date + "-" + month + "-" + year));
+                        }
+
                     }
                 }, mYear, mMonth, mDate);
                 datePickerDialog.show();

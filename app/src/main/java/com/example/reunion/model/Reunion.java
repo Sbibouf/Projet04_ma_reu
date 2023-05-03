@@ -1,5 +1,8 @@
 package com.example.reunion.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,6 +10,7 @@ public class Reunion {
 
     private int heures, minutes, date_jour, date_mois, date_annee, num_salle, nb_participants, duree_reunion;
     private String nom_reunion, sujet_reunion, date_reu, heure_reu, salle_reu, participants;
+    private Date mDate;
 
     //Constructeur
 
@@ -24,6 +28,15 @@ public class Reunion {
     //Getters
     //And
     //Setters
+
+
+    public Date getDate() {
+        return mDate;
+    }
+
+    public void setDate(Date date) {
+        mDate = date;
+    }
 
     public String getDate_reu() {return date_reu;}
 

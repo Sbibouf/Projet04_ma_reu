@@ -2,6 +2,9 @@ package com.example.reunion.service;
 
 import com.example.reunion.model.Reunion;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public interface ReunionApiService {
@@ -28,5 +31,7 @@ public interface ReunionApiService {
      * @param reunion
      */
     void createReunion(Reunion reunion);
+
+    ArrayList<Reunion> getReunionFilterByDate(Date date);
 
 }

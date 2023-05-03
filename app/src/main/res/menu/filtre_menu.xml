@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/filtre_date"
+        android:title="Filtrer par date"
+        app:showAsAction="never" />
+    <item android:id="@+id/filtre_salle"
+        android:title="Filtrer par salle"
+        app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/i_salle1"
+                android:title="Salle 1"
+                app:showAsAction="ifRoom" />
+            <item android:id="@+id/i_salle2"
+                android:title="Salle 2"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle3"
+                android:title="Salle 3"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle4"
+                android:title="Salle 4"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle5"
+                android:title="Salle 5"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle6"
+                android:title="Salle 6"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle7"
+                android:title="Salle 7"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle8"
+                android:title="Salle 8"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle9"
+                android:title="Salle 9"
+                app:showAsAction="ifRoom"/>
+            <item android:id="@+id/i_salle10"
+                android:title="Salle 10"
+                app:showAsAction="ifRoom"/>
+        </menu>
+    </item>
+    <item android:id="@+id/filtre_cancel"
+        android:title="Annuler"
+        app:showAsAction="never"/>
+
+</menu>

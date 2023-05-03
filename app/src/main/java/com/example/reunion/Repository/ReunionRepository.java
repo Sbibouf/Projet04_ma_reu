@@ -5,6 +5,9 @@ import com.example.reunion.model.Reunion;
 import com.example.reunion.service.FakeReunionApiService;
 import com.example.reunion.service.ReunionApiService;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReunionRepository {
@@ -41,5 +44,9 @@ public class ReunionRepository {
     public void deleteReunion(Reunion reunion) {
 
         mReunionApiService.deleteReunion(reunion);
+    }
+
+    public ArrayList<Reunion> getFilterReunionByDate(Date date) {
+        return mReunionApiService.getReunionFilterByDate(date);
     }
 }

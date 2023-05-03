@@ -9,7 +9,9 @@ import com.example.reunion.model.Reunion;
 import com.example.reunion.service.FakeReunionApiService;
 import com.example.reunion.service.ReunionApiService;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainViewModel extends ViewModel {
@@ -38,5 +40,8 @@ public class MainViewModel extends ViewModel {
     }
     public void supprimer_Reunion(Reunion reunion){
         mReunionRepository.deleteReunion(reunion);
+    }
+    public ArrayList<Reunion> getFilterReunionByDate(Date date) {
+        return mReunionRepository.getFilterReunionByDate(date);
     }
 }
