@@ -73,7 +73,7 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
                 builder.setCancelable(true);
                 builder.setTitle("Supprimer la réunion " + reunion.getNom_reunion());
                 builder.setMessage("Êtes vous sûr?");
-                builder.setPositiveButton("Confirm",
+                builder.setPositiveButton("Ok",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

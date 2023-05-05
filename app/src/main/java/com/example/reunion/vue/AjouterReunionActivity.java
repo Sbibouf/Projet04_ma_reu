@@ -24,13 +24,19 @@ import com.example.reunion.service.FakeReunionApiService;
 import com.example.reunion.service.ReunionApiService;
 import com.example.reunion.viewModel.AjouterReunionViewModel;
 
-import java.security.Provider;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class AjouterReunionActivity extends AppCompatActivity {
     AjouterReunionBinding binding;
-    private int mDate, mMonth, mYear, mHour, mMin;
+    private int mDate, mMonth, mYear, mHour, mMin, mJourChoisi, mMoisChoisi, mAnneeChoisi, mHeureChoisi, mMinuteChoisi;
     String[] liste_salle, liste_participants;
     ArrayAdapter<String> adapter;
     AjouterReunionViewModel mAjouterReunionViewModel;
@@ -50,11 +56,10 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
     public void initFormulaire() {
 
-        liste_salle = getResources().getStringArray(R.array.Numero_de_salle);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste_salle);
-        binding.numeroSalle.setAdapter(arrayAdapter);
 
-        //* Recuperation de la date
+        /**
+         * Recuperation de la date
+         */
 
         binding.dateReu.setFocusable(false);
         binding.dateReu.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +75,6 @@ public class AjouterReunionActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
 
-                        month = month+1;
                         if(date<10){
                             binding.dateReu.setText(("0"+date + "-" + month + "-" + year));
                         }
@@ -84,6 +88,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
                         else {
                             binding.dateReu.setText((date + "-" + month + "-" + year));
                         }
+                        mJourChoisi = date;
+                        mMoisChoisi = month;
+                        mAnneeChoisi = year;
 
                     }
                 }, mYear, mMonth, mDate);
@@ -91,7 +98,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
             }
         });
 
-        //* Recuperation de l'heure
+        /**
+         * Recuperation de l'heure
+         */
 
         binding.heureReu.setFocusable(false);
         binding.heureReu.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +114,17 @@ public class AjouterReunionActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        binding.heureReu.setText((hourOfDay + ":" + minute));
+                        if(minute<10){
+                            binding.heureReu.setText((hourOfDay + ":" +0+ minute));
+                        }
+                        else{
+                            binding.heureReu.setText((hourOfDay + ":" + minute));
+                        }
+
+                        mHeureChoisi = hourOfDay;
+                        mMinuteChoisi = minute;
+                        verifierDate();
+
                     }
                 }, mHour, mMin, true);
                 timePickerDialog.show();
@@ -114,8 +133,10 @@ public class AjouterReunionActivity extends AppCompatActivity {
             }
         });
 
-        //* Autocompletion de la liste des participants a selectionner
 
+        /**
+         * Initialisation de la liste des participants a selectionner
+         */
         liste_participants = getResources().getStringArray(R.array.mail_participants);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, liste_participants);
         binding.participants.setAdapter(adapter);
@@ -132,6 +153,28 @@ public class AjouterReunionActivity extends AppCompatActivity {
                 OnSubmit();
             }
         });
+    }
+
+    public void verifierDate() {
+
+        /**
+         * Initialisation de la liste des salles puis on boucle sur la liste de reunions pour n'afficher que les salles disponibles
+         */
+        liste_salle = getResources().getStringArray(R.array.Numero_de_salle);
+        List<String> listeSalle = Arrays.asList(liste_salle);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste_salle);
+        for (Reunion reunion: mAjouterReunionViewModel.getReunions()) {
+            Date timeC = new Date(mAnneeChoisi,mMoisChoisi,mJourChoisi,mHeureChoisi,mMinuteChoisi);
+            Date timeR = reunion.getDate_reunion();
+            if(timeC.compareTo(timeR)!=0){
+                binding.numeroSalle.setAdapter(adapter);
+
+            }
+            else {
+                binding.numeroSalle.setAdapter(arrayAdapter);
+            }
+        }
+
     }
 
     public void OnSubmit() {
@@ -171,7 +214,7 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
         }
         else {
-            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, heure, salle, participants));
+            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, heure, salle, participants,new Date(mAnneeChoisi,mMoisChoisi,mJourChoisi,mHeureChoisi,mMinuteChoisi)));
             Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
             finish();
         }

@@ -32,6 +32,13 @@ public interface ReunionApiService {
      */
     void createReunion(Reunion reunion);
 
+    /**
+     * Get all reunions filtered by date
+     *
+     * @param date
+     * @return {@link ArrayList}
+     */
+
     ArrayList<Reunion> getReunionFilterByDate(Date date);
 
 }

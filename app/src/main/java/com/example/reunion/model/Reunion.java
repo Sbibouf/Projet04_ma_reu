@@ -1,27 +1,71 @@
 package com.example.reunion.model;
 
+import java.io.Serializable;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.SimpleTimeZone;
 
-public class Reunion {
+/**
+ * Objet representant une Reunion
+ */
+public class Reunion implements Serializable {
+    private Date date_reunion;
 
-    private int heures, minutes, date_jour, date_mois, date_annee, num_salle, nb_participants, duree_reunion;
-    private String nom_reunion, sujet_reunion, date_reu, heure_reu, salle_reu, participants;
-    private Date mDate;
+    /**
+     * Nom
+     */
+    private String nom_reunion;
 
-    //Constructeur
+    /**
+     * Sujet
+     */
+    private String sujet_reunion;
 
-    public Reunion(String nom, String sujet, String date, String heure, String salle, String participant ) {
+    /**
+     * Date
+     */
+    private String date_reu;
+
+    /**
+     * Heure
+     */
+    private String heure_reu;
+
+    /**
+     * Numero de la salle
+     */
+    private String salle_reu;
+
+
+    /**
+     * Liste des participants
+     */
+    private String participants;
+
+    /**
+     * Constructeur
+     *
+     * @param nom
+     * @param sujet
+     * @param date
+     * @param heure
+     * @param salle
+     * @param participant
+     */
+    public Reunion(String nom, String sujet, String dateStr, String heure, String salle, String participant, Date date ) {
 
         nom_reunion = nom;
         sujet_reunion = sujet;
-        date_reu = date;
+        date_reu = dateStr;
         heure_reu = heure;
         salle_reu = salle;
         participants = participant;
+        date_reunion= date;
+
     }
 
 
@@ -30,12 +74,12 @@ public class Reunion {
     //Setters
 
 
-    public Date getDate() {
-        return mDate;
+    public Date getDate_reunion() {
+        return date_reunion;
     }
 
-    public void setDate(Date date) {
-        mDate = date;
+    public void setDate_reunion(Date date_reunion) {
+        this.date_reunion = date_reunion;
     }
 
     public String getDate_reu() {return date_reu;}
@@ -50,45 +94,6 @@ public class Reunion {
 
     public void setSalle_reu(String salle_reu) {this.salle_reu = salle_reu;}
 
-    public int getHeures() {
-        return heures;
-    }
-
-    public void setHeures(int heures) {
-        this.heures = heures;
-    }
-
-    public int getMinutes() {
-        return minutes;
-    }
-
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
-    public int getDate_jour() {
-        return date_jour;
-    }
-
-    public void setDate_jour(int date_jour) {
-        this.date_jour = date_jour;
-    }
-
-    public int getDate_mois() {
-        return date_mois;
-    }
-
-    public void setDate_mois(int date_mois) {
-        this.date_mois = date_mois;
-    }
-
-    public int getDate_annee() {
-        return date_annee;
-    }
-
-    public void setDate_annee(int date_annee) {
-        this.date_annee = date_annee;
-    }
 
     public String getNom_reunion() {
         return nom_reunion;
@@ -114,17 +119,6 @@ public class Reunion {
         this.participants = participants;
     }
 
-    public int getNum_salle() { return num_salle; }
-
-    public void setNum_salle(int num_salle) { this.num_salle = num_salle; }
-
-    public int getNb_participants() { return nb_participants; }
-
-    public void setNb_participants(int nb_participants) { this.nb_participants = nb_participants; }
-
-    public int getDuree_reunion() { return duree_reunion; }
-
-    public void setDuree_reunion(int duree_reunion) { this.duree_reunion = duree_reunion; }
 
 
 }

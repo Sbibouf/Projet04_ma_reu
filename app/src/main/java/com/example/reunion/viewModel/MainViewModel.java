@@ -20,27 +20,35 @@ public class MainViewModel extends ViewModel {
     ReunionRepository mReunionRepository;
     MutableLiveData<List<Reunion>> mMutableLiveData;
 
+    /**
+     * Constructor
+     *
+     */
     public MainViewModel() {
         mReunionRepository = ReunionRepository.getInstance();
         mMutableLiveData = new MutableLiveData<>();
     }
 
-    public MutableLiveData<List<Reunion>> getMutableLiveData(){
-        return mMutableLiveData;
-    }
-
-    public void fetchReunion(){
-        List<Reunion> reunion = mReunionRepository.getReunions();
-        mMutableLiveData.setValue(reunion);
-
-    }
+    /**
+     *
+     * {@inheritDoc}
+     */
     public List<Reunion> getReunions(){
         return mReunionRepository.getReunions();
 
     }
+    /**
+     *
+     * {@inheritDoc}
+     */
     public void supprimer_Reunion(Reunion reunion){
         mReunionRepository.deleteReunion(reunion);
     }
+
+    /**
+     *
+     * {@inheritDoc}
+     */
     public ArrayList<Reunion> getFilterReunionByDate(Date date) {
         return mReunionRepository.getFilterReunionByDate(date);
     }

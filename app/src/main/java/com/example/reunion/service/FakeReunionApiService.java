@@ -16,24 +16,40 @@ public class FakeReunionApiService implements ReunionApiService {
 
     private List<Reunion> mReunions = ReunionGenerator.GenererReunions();
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public List<Reunion> getReunions() {
 
         return mReunions;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void deleteReunion(Reunion reunion) {
         mReunions.remove(reunion);
 
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void createReunion(Reunion reunion) {
         mReunions.add(reunion);
 
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public ArrayList<Reunion> getReunionFilterByDate(Date date) {
        ArrayList<Reunion> listeFiltrerParDate = new ArrayList<>();
