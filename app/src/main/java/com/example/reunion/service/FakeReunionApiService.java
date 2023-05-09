@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class FakeReunionApiService implements ReunionApiService {
 
@@ -64,4 +65,17 @@ public class FakeReunionApiService implements ReunionApiService {
         }
         return listeFiltrerParDate;
     }
+
+    @Override
+    public List<Reunion> reunionFiltrerParSalle(String salle) {
+        List<Reunion> listeFiltrerParSalle = new ArrayList<>();
+        for (Reunion reunion: mReunions ) {
+            if(Objects.equals(reunion.getSalle_reu(), salle)){
+                listeFiltrerParSalle.add(reunion);
+            }
+        }
+        return listeFiltrerParSalle;
+    }
+
+
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +14,13 @@ import java.util.SimpleTimeZone;
  * Objet representant une Reunion
  */
 public class Reunion implements Serializable {
-    private Date date_reunion;
+
+
+    private Date debut_reunion;
+
+
+    private Date fin_reunion;
+
 
     /**
      * Nom
@@ -51,12 +58,13 @@ public class Reunion implements Serializable {
      *
      * @param nom
      * @param sujet
-     * @param date
+     * @param debut
+     * @param fin
      * @param heure
      * @param salle
      * @param participant
      */
-    public Reunion(String nom, String sujet, String dateStr, String heure, String salle, String participant, Date date ) {
+    public Reunion(String nom, String sujet, String dateStr, String heure, String salle, String participant, Date debut, Date fin ) {
 
         nom_reunion = nom;
         sujet_reunion = sujet;
@@ -64,7 +72,8 @@ public class Reunion implements Serializable {
         heure_reu = heure;
         salle_reu = salle;
         participants = participant;
-        date_reunion= date;
+        debut_reunion= debut;
+        fin_reunion = fin;
 
     }
 
@@ -74,12 +83,20 @@ public class Reunion implements Serializable {
     //Setters
 
 
-    public Date getDate_reunion() {
-        return date_reunion;
+    public Date getFin_reunion() {
+        return fin_reunion;
     }
 
-    public void setDate_reunion(Date date_reunion) {
-        this.date_reunion = date_reunion;
+    public void setFin_reunion(Date fin_reunion) {
+        this.fin_reunion = fin_reunion;
+    }
+
+    public Date getDebut_reunion() {
+        return debut_reunion;
+    }
+
+    public void setDebut_reunion(Date date_reunion) {
+        this.debut_reunion = date_reunion;
     }
 
     public String getDate_reu() {return date_reu;}

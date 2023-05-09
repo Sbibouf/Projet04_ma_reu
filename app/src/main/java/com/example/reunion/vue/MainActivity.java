@@ -58,14 +58,13 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
         mReunionList = new ArrayList<>(mMainViewModel.getReunions());
         adapter = new MyReunionAdapter(mReunionList,this );
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //binding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         binding.recyclerView.setAdapter(adapter);
     }
 
 
     public void ajouterReunion() {
 
-        binding.floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+        binding.fbAjouterReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -103,34 +102,34 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
                 filtrerDate();
                 return true;
             case R.id.i_salle1:
-                filtrerParSalle("Salle 1");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 1"));
                 return true;
             case R.id.i_salle2:
-                filtrerParSalle("Salle 2");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 2"));
                 return true;
             case R.id.i_salle3:
-                filtrerParSalle("Salle 3");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 3"));
                 return true;
             case R.id.i_salle4:
-                filtrerParSalle("Salle 4");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 4"));
                 return true;
             case R.id.i_salle5:
-                filtrerParSalle("Salle 5");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 5"));
                 return true;
             case R.id.i_salle6:
-                filtrerParSalle("Salle 6");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 6"));
                 return true;
             case R.id.i_salle7:
-                filtrerParSalle("Salle 7");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 7"));
                 return true;
             case R.id.i_salle8:
-                filtrerParSalle("Salle 8");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 8"));
                 return true;
             case R.id.i_salle9:
-                filtrerParSalle("Salle 9");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 9"));
                 return true;
             case R.id.i_salle10:
-                filtrerParSalle("Salle 10");
+                changerList(mMainViewModel.reunionFiltrerParSalle("Salle 10"));
                 return true;
             case R.id.filtre_cancel:
                 changerList(mMainViewModel.getReunions());
@@ -138,17 +137,6 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-    }
-
-    public void filtrerParSalle(String salle){
-        List<Reunion> listeFiltrerParSalle = new ArrayList<>();
-        for (Reunion reunion: mReunionList ) {
-            if(Objects.equals(reunion.getSalle_reu(), salle)){
-                listeFiltrerParSalle.add(reunion);
-            }
-        }
-       changerList(listeFiltrerParSalle);
 
     }
     public void filtrerDate(){
@@ -176,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     private void configureOnClickRecyclerView() {
-        ItemClickSupport.addTo(binding.recyclerView, R.layout.activity_main)
+        ItemClickSupport.addTo(binding.recyclerView, R.layout.fragment_reunion_)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {

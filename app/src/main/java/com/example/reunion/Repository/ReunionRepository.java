@@ -71,4 +71,8 @@ public class ReunionRepository {
     public ArrayList<Reunion> getFilterReunionByDate(Date date) {
         return mReunionApiService.getReunionFilterByDate(date);
     }
+
+    public List<Reunion> reunionFiltrerParSalle(String salle) {
+        return mReunionApiService.reunionFiltrerParSalle(salle);
+    }
 }

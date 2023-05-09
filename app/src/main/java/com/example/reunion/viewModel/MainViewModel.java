@@ -18,7 +18,7 @@ public class MainViewModel extends ViewModel {
 
 
     ReunionRepository mReunionRepository;
-    MutableLiveData<List<Reunion>> mMutableLiveData;
+
 
     /**
      * Constructor
@@ -26,7 +26,7 @@ public class MainViewModel extends ViewModel {
      */
     public MainViewModel() {
         mReunionRepository = ReunionRepository.getInstance();
-        mMutableLiveData = new MutableLiveData<>();
+
     }
 
     /**
@@ -51,5 +51,8 @@ public class MainViewModel extends ViewModel {
      */
     public ArrayList<Reunion> getFilterReunionByDate(Date date) {
         return mReunionRepository.getFilterReunionByDate(date);
+    }
+    public List<Reunion> reunionFiltrerParSalle(String salle) {
+        return mReunionRepository.reunionFiltrerParSalle(salle);
     }
 }

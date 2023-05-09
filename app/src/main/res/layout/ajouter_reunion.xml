@@ -58,7 +58,7 @@
         app:endIconMode="custom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_sujet"
-        app:layout_constraintEnd_toStartOf="@id/et_heure">
+        app:layout_constraintEnd_toStartOf="@id/et_debut">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/date_reu"
@@ -69,7 +69,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_heure"
+        android:id="@+id/et_debut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -77,15 +77,37 @@
         android:ems="10"
         app:endIconDrawable="@drawable/ic_clock"
         app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toEndOf="@id/et_date"
-        app:layout_constraintTop_toBottomOf="@id/et_sujet">
+        app:layout_constraintTop_toBottomOf="@id/et_sujet"
+        app:layout_constraintEnd_toStartOf="@id/et_fin">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/heure_reu"
+            android:id="@+id/debut_reu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Heure" />
+            android:hint="Début" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_fin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        app:endIconDrawable="@drawable/ic_clock"
+        app:endIconMode="custom"
+        app:layout_constraintStart_toEndOf="@id/et_debut"
+        app:layout_constraintTop_toBottomOf="@id/et_sujet"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fin_reu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fin" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

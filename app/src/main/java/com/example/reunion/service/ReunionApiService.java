@@ -40,5 +40,6 @@ public interface ReunionApiService {
      */
 
     ArrayList<Reunion> getReunionFilterByDate(Date date);
+    List<Reunion> reunionFiltrerParSalle(String salle);
 
 }

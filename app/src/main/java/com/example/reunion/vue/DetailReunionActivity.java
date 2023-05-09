@@ -13,7 +13,11 @@ import com.example.reunion.model.Reunion;
 import com.example.reunion.viewModel.DetailReunionViewModel;
 import com.example.reunion.viewModel.MainViewModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DetailReunionActivity extends AppCompatActivity {
     ActivityDetailReunionBinding mDetailReunionBinding;
@@ -37,23 +41,30 @@ public class DetailReunionActivity extends AppCompatActivity {
 
         if(mReunion != null) {
 
-            mDetailReunionBinding.tvDateReunion.setText((CharSequence) mReunion.getDate_reunion());
-            mDetailReunionBinding.tvNomReunion.setText(mReunion.getNom_reunion());
+            mDetailReunionBinding.tvDateReunion.setText(mReunion.getDate_reu() + " "+mReunion.getHeure_reu());
+            mDetailReunionBinding.tvNomReunion.setText("Reunion : "+mReunion.getNom_reunion());
             mDetailReunionBinding.tvSujetReunion.setText(mReunion.getSujet_reunion());
             mDetailReunionBinding.tvListeParticipants.setText(mReunion.getParticipants());
+            mDetailReunionBinding.ivIconeReunion.setImageDrawable(getDrawable(R.drawable.circle));
         }
 
 
     }
 
     public void changerImageReunion(){
+        Date dateDuJour = Calendar.getInstance().getTime();
+        Date dateReunion = mReunion.getFin_reunion();
 
-        if(new Date().before(mReunion.getDate_reunion())){
+        if(dateDuJour.before(dateReunion)||dateDuJour.compareTo(dateReunion)==0){
 
             mDetailReunionBinding.ivIconeReunion.setColorFilter(Color.argb(200, 94, 203, 32));
+            mDetailReunionBinding.tvStatutReunion.setText("En attente");
+            mDetailReunionBinding.tvStatutReunion.setTextColor(Color.green(203));
         }
         else{
             mDetailReunionBinding.ivIconeReunion.setColorFilter(Color.argb(200, 203, 32, 32));
+            mDetailReunionBinding.tvStatutReunion.setText("Terminé");
+            mDetailReunionBinding.tvStatutReunion.setTextColor(Color.red(203));
         }
 
     }
