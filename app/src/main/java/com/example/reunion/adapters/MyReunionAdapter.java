@@ -15,14 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reunion.databinding.FragmentReunionBinding;
 import com.example.reunion.model.Reunion;
-import com.example.reunion.service.FakeReunionApiService;
 import com.example.reunion.service.SupprimerReunionService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.ViewHolder> {
 
@@ -49,16 +45,10 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Reunion reunion = mReunions.get(position);
-        SimpleDateFormat dateSimple = new SimpleDateFormat("dd-MM-yyyy", new Locale("fr"));
-        Date dateReunion = null;
-        try {
-            dateReunion = dateSimple.parse(reunion.getDate_reu());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        holder.tv_nom_reunion.setText(reunion.getNom_reunion());
-        holder.tv_heure.setText(reunion.getHeure_reu());
-        holder.tv_salle.setText(reunion.getSalle_reu());
+        Date dateReunion = reunion.getFinReunion();
+        holder.tv_nom_reunion.setText(reunion.getNomReunion());
+        holder.tv_heure.setText(reunion.getHeureReu());
+        holder.tv_salle.setText(reunion.getSalleReu());
         holder.tv_participants.setText(reunion.getParticipants());
         if (new Date().before(dateReunion)) {
 
@@ -71,7 +61,7 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 builder.setCancelable(true);
-                builder.setTitle("Supprimer la réunion " + reunion.getNom_reunion());
+                builder.setTitle("Supprimer la réunion " + reunion.getNomReunion());
                 builder.setMessage("Êtes vous sûr?");
                 builder.setPositiveButton("Ok",
                         new DialogInterface.OnClickListener() {

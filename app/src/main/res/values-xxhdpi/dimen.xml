@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TextViews -->
+    <dimen name="nom_reunion_size">14sp</dimen>
+    <dimen name="margin_start_reunion">8dp</dimen>
+    <dimen name="date_margin_reunion">4dp</dimen>
+    <!-- Images -->
+    <dimen name="icone_reunion_height">36dp</dimen>
+    <dimen name="icone_reunion_width">@dimen/icone_reunion_height</dimen>
+
+
+</resources>

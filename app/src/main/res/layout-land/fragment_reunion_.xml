@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start_reunion"
             android:text="text"
-            android:textSize="@dimen/nom_reunion_size"
             android:maxLength="50"
             android:maxLines="1"
             android:ellipsize="end"

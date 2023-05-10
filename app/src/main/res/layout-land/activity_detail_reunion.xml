@@ -23,11 +23,10 @@
             android:id="@+id/iv_icone_reunion"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="icone_statut_reunion"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:srcCompat="@drawable/circle" />
         <TextView
             android:id="@+id/tv_date_reunion"
@@ -94,10 +93,9 @@
         <TextView
             android:id="@+id/tv_sujet_reunion"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="Sujet de la réunion"
-            android:textSize="@dimen/nom_reunion_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
@@ -128,13 +126,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
-            android:paddingEnd="8dp"
             android:text="Liste des participants"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp" />
 
         <View
             android:id="@+id/divider2"

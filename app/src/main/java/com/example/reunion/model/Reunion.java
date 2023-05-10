@@ -1,66 +1,60 @@
 package com.example.reunion.model;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-import java.util.SimpleTimeZone;
 
 /**
- * Objet representant une Reunion
+ * Object representing a Meeting
  */
 public class Reunion implements Serializable {
 
 
     /**
-     * Date de debut de la réunion
+     * Start date of the meeting
      */
-    private Date debut_reunion;
+    private Date mDebutReunion;
 
 
     /**
-     * Date de fin de la réunion
+     * End date of the meeting
      */
-    private Date fin_reunion;
+    private Date mFinReunion;
 
 
     /**
-     * Nom
+     * Name
      */
-    private String nom_reunion;
+    private String mNomReunion;
 
     /**
-     * Sujet
+     * Subject
      */
-    private String sujet_reunion;
+    private String mSujetReunion;
 
     /**
      * Date
      */
-    private String date_reu;
+    private String mDateReu;
 
     /**
-     * Heure
+     * Hour
      */
-    private String heure_reu;
+    private String mHeureReu;
 
     /**
-     * Numero de la salle
+     * Room number
      */
-    private String salle_reu;
+    private String mSalleReu;
 
 
     /**
-     * Liste des participants
+     * List of players
      */
-    private String participants;
+    private String mParticipants;
 
     /**
-     * Constructeur
+     * Constructor
      *
      * @param nom
      * @param sujet
@@ -72,14 +66,14 @@ public class Reunion implements Serializable {
      */
     public Reunion(String nom, String sujet, String dateStr, String heure, String salle, String participant, Date debut, Date fin ) {
 
-        nom_reunion = nom;
-        sujet_reunion = sujet;
-        date_reu = dateStr;
-        heure_reu = heure;
-        salle_reu = salle;
-        participants = participant;
-        debut_reunion= debut;
-        fin_reunion = fin;
+        mNomReunion = nom;
+        mSujetReunion = sujet;
+        mDateReu = dateStr;
+        mHeureReu = heure;
+        mSalleReu = salle;
+        mParticipants = participant;
+        mDebutReunion = debut;
+        mFinReunion = fin;
 
     }
 
@@ -89,59 +83,69 @@ public class Reunion implements Serializable {
     //Setters
 
 
-    public Date getFin_reunion() {
-        return fin_reunion;
+    public Date getFinReunion() {
+        return mFinReunion;
     }
 
-    public void setFin_reunion(Date fin_reunion) {
-        this.fin_reunion = fin_reunion;
+    public void setFinReunion(Date finReunion) {
+        this.mFinReunion = finReunion;
     }
 
-    public Date getDebut_reunion() {
-        return debut_reunion;
+    public Date getDebutReunion() {
+        return mDebutReunion;
     }
 
-    public void setDebut_reunion(Date date_reunion) {
-        this.debut_reunion = date_reunion;
+    public void setDebutReunion(Date date_reunion) {
+        this.mDebutReunion = date_reunion;
     }
 
-    public String getDate_reu() {return date_reu;}
+    public String getDateReu() {return mDateReu;}
 
-    public void setDate_reu(String date_reu) {this.date_reu = date_reu;}
+    public void setDateReu(String dateReu) {this.mDateReu = dateReu;}
 
-    public String getHeure_reu() {return heure_reu;}
+    public String getHeureReu() {return mHeureReu;}
 
-    public void setHeure_reu(String heure_reu) {this.heure_reu = heure_reu;}
+    public void setHeureReu(String heureReu) {this.mHeureReu = heureReu;}
 
-    public String getSalle_reu() {return salle_reu;}
+    public String getSalleReu() {return mSalleReu;}
 
-    public void setSalle_reu(String salle_reu) {this.salle_reu = salle_reu;}
+    public void setSalleReu(String salleReu) {this.mSalleReu = salleReu;}
 
 
-    public String getNom_reunion() {
-        return nom_reunion;
+    public String getNomReunion() {
+        return mNomReunion;
     }
 
-    public void setNom_reunion(String nom_reunion) {
-        this.nom_reunion = nom_reunion;
+    public void setNomReunion(String nomReunion) {
+        this.mNomReunion = nomReunion;
     }
 
-    public String getSujet_reunion() {
-        return sujet_reunion;
+    public String getSujetReunion() {
+        return mSujetReunion;
     }
 
-    public void setSujet_reunion(String lieu_reunion) {
-        this.sujet_reunion = lieu_reunion;
+    public void setSujetReunion(String lieu_reunion) {
+        this.mSujetReunion = lieu_reunion;
     }
 
     public String getParticipants() {
-        return participants;
+        return mParticipants;
     }
 
     public void setParticipants(String participants) {
-        this.participants = participants;
+        this.mParticipants = participants;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reunion reunion = (Reunion) o;
+        return mDebutReunion.equals(reunion.mDebutReunion) && mFinReunion.equals(reunion.mFinReunion) && mNomReunion.equals(reunion.mNomReunion) && mSujetReunion.equals(reunion.mSujetReunion) && mDateReu.equals(reunion.mDateReu) && mHeureReu.equals(reunion.mHeureReu) && mSalleReu.equals(reunion.mSalleReu) && mParticipants.equals(reunion.mParticipants);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(mDebutReunion, mFinReunion, mNomReunion, mSujetReunion, mDateReu, mHeureReu, mSalleReu, mParticipants);
+    }
 }

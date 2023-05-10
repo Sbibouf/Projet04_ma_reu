@@ -1,27 +1,24 @@
 package com.example.reunion.vue;
 
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -68,16 +65,6 @@ public class MainActivityTest {
         textInputEditText.perform(replaceText("test"), closeSoftKeyboard());
 
         ViewInteraction textInputEditText2 = onView(
-                allOf(withId(R.id.nom_reu), withText("test"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.et_nom),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textInputEditText2.perform(pressImeActionButton());
-
-        ViewInteraction textInputEditText3 = onView(
                 allOf(withId(R.id.sujet_reu),
                         childAtPosition(
                                 childAtPosition(
@@ -85,9 +72,9 @@ public class MainActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        textInputEditText3.perform(replaceText("test"), closeSoftKeyboard());
+        textInputEditText2.perform(replaceText("test"), closeSoftKeyboard());
 
-        ViewInteraction textInputEditText4 = onView(
+        ViewInteraction textInputEditText3 = onView(
                 allOf(withId(R.id.date_reu),
                         childAtPosition(
                                 childAtPosition(
@@ -95,7 +82,7 @@ public class MainActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        textInputEditText4.perform(click());
+        textInputEditText3.perform(click());
 
         ViewInteraction materialButton = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -106,7 +93,7 @@ public class MainActivityTest {
                                 3)));
         materialButton.perform(scrollTo(), click());
 
-        ViewInteraction textInputEditText5 = onView(
+        ViewInteraction textInputEditText4 = onView(
                 allOf(withId(R.id.debut_reu),
                         childAtPosition(
                                 childAtPosition(
@@ -114,7 +101,7 @@ public class MainActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        textInputEditText5.perform(click());
+        textInputEditText4.perform(click());
 
         ViewInteraction materialButton2 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -125,7 +112,7 @@ public class MainActivityTest {
                                 3)));
         materialButton2.perform(scrollTo(), click());
 
-        ViewInteraction textInputEditText6 = onView(
+        ViewInteraction textInputEditText5 = onView(
                 allOf(withId(R.id.fin_reu),
                         childAtPosition(
                                 childAtPosition(
@@ -133,7 +120,7 @@ public class MainActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        textInputEditText6.perform(click());
+        textInputEditText5.perform(click());
 
         ViewInteraction materialButton3 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
@@ -154,12 +141,15 @@ public class MainActivityTest {
                         isDisplayed()));
         materialAutoCompleteTextView.perform(click());
 
-        DataInteraction textView = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(1);
-        textView.perform(click());
+        ViewInteraction materialAutoCompleteTextView2 = onView(
+                allOf(withId(R.id.numero_salle),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.et_salle),
+                                        0),
+                                0),
+                        isDisplayed()));
+        materialAutoCompleteTextView2.perform(replaceText("Salle 1"), closeSoftKeyboard());
 
         ViewInteraction appCompatMultiAutoCompleteTextView = onView(
                 allOf(withId(R.id.participants),
@@ -171,12 +161,15 @@ public class MainActivityTest {
                         isDisplayed()));
         appCompatMultiAutoCompleteTextView.perform(click());
 
-        DataInteraction materialTextView = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(3);
-        materialTextView.perform(click());
+        ViewInteraction appCompatMultiAutoCompleteTextView2 = onView(
+                allOf(withId(R.id.participants),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.part),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatMultiAutoCompleteTextView2.perform(replaceText("Alex@lamzone.fr"), closeSoftKeyboard());
 
         ViewInteraction materialButton4 = onView(
                 allOf(withId(R.id.bt_save), withText("sauvegarder"),
@@ -194,6 +187,17 @@ public class MainActivityTest {
                                 withId(R.id.main_layout),
                                 1)));
         recyclerView.perform(actionOnItemAtPosition(15, click()));
+
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(com.google.android.material.R.id.action_bar),
+                                        childAtPosition(
+                                                withId(com.google.android.material.R.id.action_bar_container),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

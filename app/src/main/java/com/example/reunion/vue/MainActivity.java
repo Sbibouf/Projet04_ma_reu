@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     private MyReunionAdapter adapter; // Adapter de la recyclerview
 
     /**
-     * Création de l'activité
+     * Activity created
      * @param savedInstanceState
      */
     @Override
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * Initialisation de l'interface utilisateur
+     * Initialisation of the UI
      */
     public void initUI() {
         mReunionList = new ArrayList<>(mMainViewModel.getReunions());
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
 
 
     /**
-     * Initialisation du bouton + qui mène vers la page de création de réunion
+     * Initialisation of the button leading to the other activity
      */
     public void ajouterReunion() {
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * On reinitialise l'interface utilisateur lors de la reprise de l'activité
+     * Reset of the UI when activity resume
      */
     @Override
     protected void onResume() {
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * On surcharge la methode supprimerReunion pour supprimer la reunion reçu puis on reset l'UI
+     * Overriding the methode for deleting a meeting then reset UI
      * @param reunion
      */
     @Override
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * Initialisation du menu de filtre
+     * Initialisation of the filter menu
      * @param menu
      * @return
      */
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * Action effectuées pour chaque element du menu
+     * Evry action for evry menu items
      * @param item
      * @return
      */
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * Ouvre un calendrier pour choisir une date et appel la methode getFilterReunionByDate pour filtrer les elements par date
+     * Open a calendar to pick a date and call methode getFilterReunionByDate
      */
     public void filtrerDate(){
         int selectedYear = 2023;
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * Change les reunions de liste pour n'afficher que ceux desirés
+     * Change the meeting list to show only desire one
      * @param reunions
      */
     public void changerList(List<Reunion> reunions){
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements SupprimerReunionS
     }
 
     /**
-     * Lors d'un clique sur une reunion de la recyclerview on l'envoie en extra a l'activité DetailReunionActivity
+     * When we click on an item of the recyclerview we put it in an Extra and send it to the Activity DetailReunionActivity
      */
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(binding.recyclerView, R.layout.fragment_reunion_)

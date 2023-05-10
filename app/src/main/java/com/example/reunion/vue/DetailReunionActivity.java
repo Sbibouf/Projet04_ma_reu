@@ -8,16 +8,11 @@ import android.os.Bundle;
 
 import com.example.reunion.R;
 import com.example.reunion.databinding.ActivityDetailReunionBinding;
-import com.example.reunion.databinding.ActivityMainBinding;
 import com.example.reunion.model.Reunion;
 import com.example.reunion.viewModel.DetailReunionViewModel;
-import com.example.reunion.viewModel.MainViewModel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class DetailReunionActivity extends AppCompatActivity {
     ActivityDetailReunionBinding mDetailReunionBinding; // Binding des éléments graphiques du layout activity_detail_reunion
@@ -37,15 +32,15 @@ public class DetailReunionActivity extends AppCompatActivity {
 
 
     /**
-     * Affichage des informations de la réunion dans les champs de l'UI
+     * Showing meeting details in layout elements
      */
     public void afficherDetailReunion(){
 
         if(mReunion != null) {
 
-            mDetailReunionBinding.tvDateReunion.setText(mReunion.getDate_reu() + " "+mReunion.getHeure_reu());
-            mDetailReunionBinding.tvNomReunion.setText("Reunion : "+mReunion.getNom_reunion());
-            mDetailReunionBinding.tvSujetReunion.setText(mReunion.getSujet_reunion());
+            mDetailReunionBinding.tvDateReunion.setText(mReunion.getDateReu() + " "+mReunion.getHeureReu());
+            mDetailReunionBinding.tvNomReunion.setText("Reunion : "+mReunion.getNomReunion());
+            mDetailReunionBinding.tvSujetReunion.setText(mReunion.getSujetReunion());
             mDetailReunionBinding.tvListeParticipants.setText(mReunion.getParticipants());
             mDetailReunionBinding.ivIconeReunion.setImageDrawable(getDrawable(R.drawable.circle));
         }
@@ -54,11 +49,11 @@ public class DetailReunionActivity extends AppCompatActivity {
     }
 
     /**
-     * Changement de couleur de l'icone de la reunion
+     * Changing meeting icon color depending on the date
      */
     public void changerImageReunion(){
         Date dateDuJour = Calendar.getInstance().getTime();
-        Date dateReunion = mReunion.getFin_reunion();
+        Date dateReunion = mReunion.getFinReunion();
 
         if(dateDuJour.before(dateReunion)||dateDuJour.compareTo(dateReunion)==0){ // Rouge si elle est finit, vert si non
 

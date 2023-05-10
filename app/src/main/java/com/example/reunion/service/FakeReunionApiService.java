@@ -4,7 +4,6 @@ package com.example.reunion.service;
 import com.example.reunion.model.Reunion;
 import com.example.reunion.model.ReunionGenerator;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,17 +59,21 @@ public class FakeReunionApiService implements ReunionApiService {
         Date dateRaccourcis = dateSelectionne.getTime();
         String dateSelectionneString = dateSimple.format(dateRaccourcis);
         for(int i = 0; i< mReunions.size(); i++){
-            boolean sameDate = dateSelectionneString.equals(mReunions.get(i).getDate_reu());
+            boolean sameDate = dateSelectionneString.equals(mReunions.get(i).getDateReu());
             if(sameDate) listeFiltrerParDate.add(mReunions.get(i));
         }
         return listeFiltrerParDate;
     }
 
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public List<Reunion> reunionFiltrerParSalle(String salle) {
         List<Reunion> listeFiltrerParSalle = new ArrayList<>();
         for (Reunion reunion: mReunions ) {
-            if(Objects.equals(reunion.getSalle_reu(), salle)){
+            if(Objects.equals(reunion.getSalleReu(), salle)){
                 listeFiltrerParSalle.add(reunion);
             }
         }

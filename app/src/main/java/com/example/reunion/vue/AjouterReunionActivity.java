@@ -31,12 +31,12 @@ public class AjouterReunionActivity extends AppCompatActivity {
     AjouterReunionBinding binding; // Binding des éléments graphiques du layout ajouter_reunion
     private int mDate, mMonth, mYear, mHour, mMin; // Date et heure a afficher par defaut dans le date picker
     private int mJourChoisi, mMoisChoisi, mAnneeChoisi, mHeureDebut, mHeureFin, mMinuteDebut, mMinuteFin; // Date et heure de début et de fin de la reunion à créer
-    String[] liste_salle, liste_participants; // La liste des salles et des participants à la réunion
+    String[] mListeSalle, mListeParticipants; // La liste des salles et des participants à la réunion
     ArrayAdapter<String> adapter; // Le tableau d'adapter pour être afficher
     AjouterReunionViewModel mAjouterReunionViewModel; // ViewModele de l'activité
 
     /**
-     * Création de l'activité
+     * Activity created
      *
      * @param savedInstanceState
      */
@@ -54,6 +54,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Initiating forms and picking date and time of the meeting
+     */
     public void initFormulaire() {
 
 
@@ -155,15 +158,15 @@ public class AjouterReunionActivity extends AppCompatActivity {
         /**
          * Initialisation de la liste des participants a selectionner
          */
-        liste_participants = getResources().getStringArray(R.array.mail_participants);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, liste_participants);
+        mListeParticipants = getResources().getStringArray(R.array.mail_participants);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mListeParticipants);
         binding.participants.setAdapter(adapter);
         binding.participants.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
     }
 
     /**
-     * On lance la methode OnSubmit lors du clique sur le boutton Sauvegarder
+     * Throwing data when click on Sauvegarder
      */
     public void saveReunion() {
 
@@ -177,23 +180,23 @@ public class AjouterReunionActivity extends AppCompatActivity {
     }
 
     /**
-     * Vérification de la date selectionné pour afficher les salle disponible
+     * Checking picked date to show only available rooms
      */
     public void verifierDate() {
 
         /**
          * Initialisation de la liste des salles puis on boucle sur la liste de reunions pour n'afficher que les salles disponibles
          */
-        liste_salle = getResources().getStringArray(R.array.Numero_de_salle);
-        List<String> listeSalle = new ArrayList<>(Arrays.asList(liste_salle));
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste_salle);
+        mListeSalle = getResources().getStringArray(R.array.Numero_de_salle);
+        List<String> listeSalle = new ArrayList<>(Arrays.asList(mListeSalle));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, mListeSalle);
         for (Reunion reunion : mAjouterReunionViewModel.getReunions()) {
             Date dateSelectionne = new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut);
-            Date dateDebutReunion = reunion.getDebut_reunion();
-            Date dateFinReunion = reunion.getFin_reunion();
+            Date dateDebutReunion = reunion.getDebutReunion();
+            Date dateFinReunion = reunion.getFinReunion();
             if (dateSelectionne.before(dateFinReunion) && dateSelectionne.after(dateDebutReunion) || dateSelectionne.compareTo(dateDebutReunion) == 0) {
 
-                listeSalle.remove(reunion.getSalle_reu());
+                listeSalle.remove(reunion.getSalleReu());
                 String[] listeSalles = new String[listeSalle.size()];
                 listeSalle.toArray(listeSalles);
                 ArrayAdapter<String> adapterSalle = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, listeSalles);
@@ -202,13 +205,14 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
             } else {
                 binding.numeroSalle.setAdapter(arrayAdapter);
+                break;
             }
         }
 
     }
 
     /**
-     * Création de la réunion en recupérant le text des champs remplis par l'utilisateur
+     * Creating the meeting with all elements provided by user
      */
     public void OnSubmit() {
 
@@ -223,7 +227,7 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
 
         /**
-         * Affichage d'un message d'erreur demandant de remplir les champs vides
+         * Showing error message if elements are empty
          */
         if (nom.isEmpty()) {
 
