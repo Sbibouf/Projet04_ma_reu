@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AjouterReunionViewModel extends ViewModel {
 
-    ReunionRepository mReunionRepository;
+    ReunionRepository mReunionRepository; // Repository des reunions
 
     /**
      * Constructor
@@ -22,14 +22,18 @@ public class AjouterReunionViewModel extends ViewModel {
     }
 
     /**
-     * {@inheritDoc}
+     * Recupère la liste des réunions via le repository
+     *
+     * @return  {@link List}
      */
     public List<Reunion> getReunions(){
         return mReunionRepository.getReunions();
     }
     /**
      *
-     * {@inheritDoc}
+     * Ajoute une réunion via le repository
+     *
+     * @param reunion
      */
     public void ajouterReunions(Reunion reunion){
         mReunionRepository.createReunion(reunion);

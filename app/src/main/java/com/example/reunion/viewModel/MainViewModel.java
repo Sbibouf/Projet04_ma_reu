@@ -17,7 +17,7 @@ import java.util.List;
 public class MainViewModel extends ViewModel {
 
 
-    ReunionRepository mReunionRepository;
+    ReunionRepository mReunionRepository; // Repository des reunions
 
 
     /**
@@ -30,28 +30,36 @@ public class MainViewModel extends ViewModel {
     }
 
     /**
+     * Recupère la liste des réunions via le repository
      *
-     * {@inheritDoc}
+     * @return  {@link List}
      */
     public List<Reunion> getReunions(){
         return mReunionRepository.getReunions();
 
     }
     /**
-     *
-     * {@inheritDoc}
+     * Supprime une reunion reçu en paramètre via la methode du repository
+     * @param reunion
      */
     public void supprimer_Reunion(Reunion reunion){
         mReunionRepository.deleteReunion(reunion);
     }
 
     /**
-     *
-     * {@inheritDoc}
+     * Recupère la liste des reunions filtrer par date
+     * @param date
+     * @return {@link ArrayList}
      */
     public ArrayList<Reunion> getFilterReunionByDate(Date date) {
         return mReunionRepository.getFilterReunionByDate(date);
     }
+
+    /**
+     * Recupère la liste des reunions filtrer par salle
+     * @param salle
+     * @return {@link List}
+     */
     public List<Reunion> reunionFiltrerParSalle(String salle) {
         return mReunionRepository.reunionFiltrerParSalle(salle);
     }

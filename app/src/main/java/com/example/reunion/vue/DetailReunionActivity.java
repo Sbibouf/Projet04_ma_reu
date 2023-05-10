@@ -20,9 +20,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DetailReunionActivity extends AppCompatActivity {
-    ActivityDetailReunionBinding mDetailReunionBinding;
-    DetailReunionViewModel mDetailReunionViewModel;
-    Reunion mReunion;
+    ActivityDetailReunionBinding mDetailReunionBinding; // Binding des éléments graphiques du layout activity_detail_reunion
+    DetailReunionViewModel mDetailReunionViewModel; // ViewModel de l'activité
+    Reunion mReunion; // La reunion a afficher
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,15 @@ public class DetailReunionActivity extends AppCompatActivity {
         mDetailReunionBinding = ActivityDetailReunionBinding.inflate(getLayoutInflater());
         setContentView(mDetailReunionBinding.getRoot());
         mDetailReunionViewModel = new ViewModelProvider(this).get(DetailReunionViewModel.class);
-        mReunion = (Reunion) getIntent().getSerializableExtra("reunion");
+        mReunion = (Reunion) getIntent().getSerializableExtra("reunion");// On recupère l'extra envoyé par la main activity
         afficherDetailReunion();
         changerImageReunion();
     }
 
 
-
+    /**
+     * Affichage des informations de la réunion dans les champs de l'UI
+     */
     public void afficherDetailReunion(){
 
         if(mReunion != null) {
@@ -51,20 +53,23 @@ public class DetailReunionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Changement de couleur de l'icone de la reunion
+     */
     public void changerImageReunion(){
         Date dateDuJour = Calendar.getInstance().getTime();
         Date dateReunion = mReunion.getFin_reunion();
 
-        if(dateDuJour.before(dateReunion)||dateDuJour.compareTo(dateReunion)==0){
+        if(dateDuJour.before(dateReunion)||dateDuJour.compareTo(dateReunion)==0){ // Rouge si elle est finit, vert si non
 
             mDetailReunionBinding.ivIconeReunion.setColorFilter(Color.argb(200, 94, 203, 32));
-            mDetailReunionBinding.tvStatutReunion.setText("En attente");
-            mDetailReunionBinding.tvStatutReunion.setTextColor(Color.green(203));
+            mDetailReunionBinding.tvStatutReunion.setText("(En attente)");
+            mDetailReunionBinding.tvStatutReunion.setTextColor(Color.parseColor("#5ECB20"));
         }
         else{
             mDetailReunionBinding.ivIconeReunion.setColorFilter(Color.argb(200, 203, 32, 32));
-            mDetailReunionBinding.tvStatutReunion.setText("Terminé");
-            mDetailReunionBinding.tvStatutReunion.setTextColor(Color.red(203));
+            mDetailReunionBinding.tvStatutReunion.setText("(Terminé)");
+            mDetailReunionBinding.tvStatutReunion.setTextColor(Color.parseColor("#CB2020"));
         }
 
     }

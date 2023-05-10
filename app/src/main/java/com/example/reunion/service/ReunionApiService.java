@@ -40,6 +40,13 @@ public interface ReunionApiService {
      */
 
     ArrayList<Reunion> getReunionFilterByDate(Date date);
+
+    /**
+     * Get all reunions filtered by date
+     *
+     * @param salle
+     * @return {@link List}
+     */
     List<Reunion> reunionFiltrerParSalle(String salle);
 
 }

@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.MultiAutoCompleteTextView;
@@ -17,31 +16,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.reunion.R;
-import com.example.reunion.Repository.ReunionRepository;
 import com.example.reunion.databinding.AjouterReunionBinding;
 import com.example.reunion.model.Reunion;
-import com.example.reunion.service.FakeReunionApiService;
-import com.example.reunion.service.ReunionApiService;
 import com.example.reunion.viewModel.AjouterReunionViewModel;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class AjouterReunionActivity extends AppCompatActivity {
-    AjouterReunionBinding binding;
-    private int mDate, mMonth, mYear, mHour, mMin, mJourChoisi, mMoisChoisi, mAnneeChoisi, mHeureDebut, mHeureFin, mMinuteDebut, mMinuteFin;
-    String[] liste_salle, liste_participants;
-    ArrayAdapter<String> adapter;
-    AjouterReunionViewModel mAjouterReunionViewModel;
+    AjouterReunionBinding binding; // Binding des éléments graphiques du layout ajouter_reunion
+    private int mDate, mMonth, mYear, mHour, mMin; // Date et heure a afficher par defaut dans le date picker
+    private int mJourChoisi, mMoisChoisi, mAnneeChoisi, mHeureDebut, mHeureFin, mMinuteDebut, mMinuteFin; // Date et heure de début et de fin de la reunion à créer
+    String[] liste_salle, liste_participants; // La liste des salles et des participants à la réunion
+    ArrayAdapter<String> adapter; // Le tableau d'adapter pour être afficher
+    AjouterReunionViewModel mAjouterReunionViewModel; // ViewModele de l'activité
 
+    /**
+     * Création de l'activité
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +50,6 @@ public class AjouterReunionActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Nouvelle Réunion");
         initFormulaire();
         saveReunion();
-        //verifierDate();
 
     }
 
@@ -77,14 +74,13 @@ public class AjouterReunionActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
-                        int mois = month+1;
-                        int annee = year-2000;
+                        int mois = month + 1;
+                        int annee = year - 2000;
 
                         binding.dateReu.setText((date + "-" + mois + "-" + annee));
-
                         mJourChoisi = date;
                         mMoisChoisi = month;
-                        mAnneeChoisi = year;
+                        mAnneeChoisi = year - 1900;
 
                     }
                 }, mYear, mMonth, mDate);
@@ -108,12 +104,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute<10){
-                            binding.debutReu.setText((hourOfDay + ":" +0+ minute));
-                        }
-                        else{
-                            binding.debutReu.setText((hourOfDay + ":" + minute));
-                        }
+
+                        binding.debutReu.setText((hourOfDay + ":" + minute));
+
 
                         mHeureDebut = hourOfDay;
                         mMinuteDebut = minute;
@@ -142,12 +135,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute<10){
-                            binding.finReu.setText((hourOfDay + ":" +0+ minute));
-                        }
-                        else{
-                            binding.finReu.setText((hourOfDay + ":" + minute));
-                        }
+
+                        binding.finReu.setText((hourOfDay + ":" + minute));
+
 
                         mHeureFin = hourOfDay;
                         mMinuteFin = minute;
@@ -172,6 +162,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * On lance la methode OnSubmit lors du clique sur le boutton Sauvegarder
+     */
     public void saveReunion() {
 
 
@@ -183,19 +176,22 @@ public class AjouterReunionActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Vérification de la date selectionné pour afficher les salle disponible
+     */
     public void verifierDate() {
 
         /**
          * Initialisation de la liste des salles puis on boucle sur la liste de reunions pour n'afficher que les salles disponibles
          */
         liste_salle = getResources().getStringArray(R.array.Numero_de_salle);
-        List<String> listeSalle = new ArrayList<> (Arrays.asList(liste_salle));
+        List<String> listeSalle = new ArrayList<>(Arrays.asList(liste_salle));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, liste_salle);
-        for (Reunion reunion: mAjouterReunionViewModel.getReunions()) {
-            Date dateSelectionne = new Date(mAnneeChoisi,mMoisChoisi,mJourChoisi,mHeureDebut,mMinuteDebut);
+        for (Reunion reunion : mAjouterReunionViewModel.getReunions()) {
+            Date dateSelectionne = new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut);
             Date dateDebutReunion = reunion.getDebut_reunion();
             Date dateFinReunion = reunion.getFin_reunion();
-            if(dateSelectionne.before(dateFinReunion)&& dateSelectionne.after(dateDebutReunion)||dateSelectionne.compareTo(dateDebutReunion)==0){
+            if (dateSelectionne.before(dateFinReunion) && dateSelectionne.after(dateDebutReunion) || dateSelectionne.compareTo(dateDebutReunion) == 0) {
 
                 listeSalle.remove(reunion.getSalle_reu());
                 String[] listeSalles = new String[listeSalle.size()];
@@ -204,14 +200,16 @@ public class AjouterReunionActivity extends AppCompatActivity {
                 binding.numeroSalle.setAdapter(adapterSalle);
                 break;
 
-            }
-            else {
+            } else {
                 binding.numeroSalle.setAdapter(arrayAdapter);
             }
         }
 
     }
 
+    /**
+     * Création de la réunion en recupérant le text des champs remplis par l'utilisateur
+     */
     public void OnSubmit() {
 
 
@@ -224,6 +222,9 @@ public class AjouterReunionActivity extends AppCompatActivity {
         String participants = binding.participants.getText().toString();
 
 
+        /**
+         * Affichage d'un message d'erreur demandant de remplir les champs vides
+         */
         if (nom.isEmpty()) {
 
             binding.etNom.setError("Veuillez entrer un nom");
@@ -249,12 +250,11 @@ public class AjouterReunionActivity extends AppCompatActivity {
             binding.etSalle.setError("Veuillez choisir une salle");
 
         }
-        if (fin.isEmpty()){
+        if (fin.isEmpty()) {
 
             binding.etFin.setError("Veuillez choisir une fin");
-        }
-        else {
-            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, debut, salle, participants,new Date(mAnneeChoisi,mMoisChoisi,mJourChoisi,mHeureDebut,mMinuteDebut), new Date(mAnneeChoisi,mMoisChoisi,mJourChoisi,mHeureFin,mMinuteFin)));
+        } else {
+            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, debut, salle, participants, new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut), new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureFin, mMinuteFin)));
             Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
             finish();
         }

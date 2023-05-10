@@ -28,30 +28,32 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:srcCompat="@drawable/circle" />
+        <TextView
+            android:id="@+id/tv_date_reunion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Date et heure de la reunion"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/Layout"
+            app:layout_constraintStart_toStartOf="@+id/Layout" />
+
+
+        <TextView
+            android:id="@+id/tv_statut_reunion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@id/tv_date_reunion"
+            app:layout_constraintBottom_toBottomOf="@id/Layout"
+            android:text="Statut" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <TextView
-        android:id="@+id/tv_date_reunion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Date et heure de la reunion"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/Layout"
-        app:layout_constraintStart_toStartOf="@+id/Layout" />
-
-
-    <TextView
-        android:id="@+id/tv_statut_reunion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@id/tv_date_reunion"
-        app:layout_constraintBottom_toBottomOf="@id/Layout"
-        android:text="TextView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"

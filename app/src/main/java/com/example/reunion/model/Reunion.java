@@ -16,9 +16,15 @@ import java.util.SimpleTimeZone;
 public class Reunion implements Serializable {
 
 
+    /**
+     * Date de debut de la réunion
+     */
     private Date debut_reunion;
 
 
+    /**
+     * Date de fin de la réunion
+     */
     private Date fin_reunion;
 
 

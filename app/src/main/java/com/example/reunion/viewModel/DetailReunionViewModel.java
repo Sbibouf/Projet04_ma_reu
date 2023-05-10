@@ -10,16 +10,21 @@ import java.util.List;
 
 public class DetailReunionViewModel extends ViewModel {
 
-    ReunionRepository mReunionRepository;
+    ReunionRepository mReunionRepository; // Repository des reunions
+
+    /**
+     * Constructor
+     */
 
     public DetailReunionViewModel() {
 
         mReunionRepository = ReunionRepository.getInstance();
     }
 
-
     /**
-     * {@inheritDoc}
+     * Recupère la liste des réunions via le repository
+     *
+     * @return  {@link List}
      */
     public List<Reunion> getReunions(){
         return mReunionRepository.getReunions();
