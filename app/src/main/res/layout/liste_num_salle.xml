@@ -8,6 +8,6 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:text="TextView"
-    android:textSize="20dp"
+    android:textSize="20sp"
     android:textAppearance="?attr/textAppearanceSubtitle1"
     />
