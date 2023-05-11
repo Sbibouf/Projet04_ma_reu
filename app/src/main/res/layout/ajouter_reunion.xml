@@ -7,80 +7,81 @@
     android:padding="16dp">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_nom"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_nom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="nom_reunion"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nom_reu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nom_reu"
             android:hint="Nom"
-            android:maxLength="15"
             android:inputType="textPersonName"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:maxLength="15" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_sujet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:gravity="start|top"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_nom">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_sujet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="sujet_reunion"
+        android:ems="10"
+        android:gravity="start|top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_nom">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Sujet"
-                android:id="@+id/sujet_reu"
-                android:inputType="textMultiLine"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sujet_reu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Sujet"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:contentDescription="date_reunion"
         android:ems="10"
         app:endIconDrawable="@drawable/ic_calendrier"
         app:endIconMode="custom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_sujet"
         app:layout_constraintEnd_toStartOf="@id/et_debut"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_sujet">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/date_reu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Date"
-            android:inputType="none"/>
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_debut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="@dimen/date_margin_reunion"
+        android:layout_marginTop="16dp"
+        android:contentDescription="heure_debut_reunion"
         android:ems="10"
         app:endIconDrawable="@drawable/ic_clock"
-        app:endIconMode="custom"
 
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toStartOf="@id/et_fin"
         app:layout_constraintStart_toEndOf="@id/et_date"
-        app:layout_constraintTop_toBottomOf="@id/et_sujet"
-        app:layout_constraintEnd_toStartOf="@id/et_fin">
+        app:layout_constraintTop_toBottomOf="@id/et_sujet">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/debut_reu"
@@ -93,14 +94,15 @@
         android:id="@+id/et_fin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="@dimen/date_margin_reunion"
+        android:layout_marginTop="16dp"
+        android:contentDescription="heure_fin_reunion"
         android:ems="10"
         app:endIconDrawable="@drawable/ic_clock"
         app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/et_debut"
-        app:layout_constraintTop_toBottomOf="@id/et_sujet"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/et_sujet">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -111,13 +113,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:id="@+id/et_salle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:contentDescription="salle_reunion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_date">
@@ -127,18 +129,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Numéro de la salle"
-            android:inputType="none"/>
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/part"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/part"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="participants_reunion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_salle">
 
         <MultiAutoCompleteTextView
@@ -146,28 +149,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Participants"
-            android:autofillHints="emailAddress" />
+            android:autofillHints="emailAddress"
+            android:hint="Participants" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:contentDescription="save_reunion"
         android:enabled="true"
         android:text="sauvegarder"
         app:cornerRadius="20dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/part"
-        android:backgroundTint="@color/cardview_dark_background"/>
+        app:layout_constraintTop_toBottomOf="@id/part" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
