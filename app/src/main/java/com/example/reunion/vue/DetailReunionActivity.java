@@ -13,6 +13,7 @@ import com.example.reunion.viewModel.DetailReunionViewModel;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class DetailReunionActivity extends AppCompatActivity {
     ActivityDetailReunionBinding mDetailReunionBinding; // Binding des éléments graphiques du layout activity_detail_reunion
@@ -52,8 +53,8 @@ public class DetailReunionActivity extends AppCompatActivity {
      * Changing meeting icon color depending on the date
      */
     public void changerImageReunion(){
-        Date dateDuJour = Calendar.getInstance().getTime();
-        Date dateReunion = mReunion.getFinReunion();
+        GregorianCalendar dateDuJour = new GregorianCalendar();
+        GregorianCalendar dateReunion = mReunion.getFinReunion();
 
         if(dateDuJour.before(dateReunion)||dateDuJour.compareTo(dateReunion)==0){ // Rouge si elle est finit, vert si non
 

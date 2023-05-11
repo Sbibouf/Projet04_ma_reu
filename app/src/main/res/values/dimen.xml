@@ -4,6 +4,8 @@
     <dimen name="nom_reunion_size">16sp</dimen>
     <dimen name="margin_start_reunion">8dp</dimen>
     <dimen name="date_margin_reunion">4dp</dimen>
+    <dimen name="detail_reunion_padding">0dp</dimen>
+    <dimen name="margin_start__detail_reunion">16dp</dimen>
     <!-- Images -->
     <dimen name="icone_reunion_height">48dp</dimen>
     <dimen name="icone_reunion_width">@dimen/icone_reunion_height</dimen>

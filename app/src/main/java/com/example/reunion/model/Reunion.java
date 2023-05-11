@@ -2,6 +2,7 @@ package com.example.reunion.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 /**
@@ -10,16 +11,17 @@ import java.util.Objects;
 public class Reunion implements Serializable {
 
 
+
     /**
      * Start date of the meeting
      */
-    private Date mDebutReunion;
+    private GregorianCalendar mDebutReunion;
 
 
     /**
      * End date of the meeting
      */
-    private Date mFinReunion;
+    private GregorianCalendar mFinReunion;
 
 
     /**
@@ -64,7 +66,7 @@ public class Reunion implements Serializable {
      * @param salle
      * @param participant
      */
-    public Reunion(String nom, String sujet, String dateStr, String heure, String salle, String participant, Date debut, Date fin ) {
+    public Reunion(String nom, String sujet, String dateStr, String heure, String salle, String participant, GregorianCalendar debut, GregorianCalendar fin ) {
 
         mNomReunion = nom;
         mSujetReunion = sujet;
@@ -83,19 +85,19 @@ public class Reunion implements Serializable {
     //Setters
 
 
-    public Date getFinReunion() {
+    public GregorianCalendar getFinReunion() {
         return mFinReunion;
     }
 
-    public void setFinReunion(Date finReunion) {
+    public void setFinReunion(GregorianCalendar finReunion) {
         this.mFinReunion = finReunion;
     }
 
-    public Date getDebutReunion() {
+    public GregorianCalendar getDebutReunion() {
         return mDebutReunion;
     }
 
-    public void setDebutReunion(Date date_reunion) {
+    public void setDebutReunion(GregorianCalendar date_reunion) {
         this.mDebutReunion = date_reunion;
     }
 

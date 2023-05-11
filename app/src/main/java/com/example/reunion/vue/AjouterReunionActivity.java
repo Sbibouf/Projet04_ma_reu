@@ -24,16 +24,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
 public class AjouterReunionActivity extends AppCompatActivity {
     AjouterReunionBinding binding; // Binding des éléments graphiques du layout ajouter_reunion
+
     private int mDate, mMonth, mYear, mHour, mMin; // Date et heure a afficher par defaut dans le date picker
+
     private int mJourChoisi, mMoisChoisi, mAnneeChoisi, mHeureDebut, mHeureFin, mMinuteDebut, mMinuteFin; // Date et heure de début et de fin de la reunion à créer
+
     String[] mListeSalle, mListeParticipants; // La liste des salles et des participants à la réunion
+
     ArrayAdapter<String> adapter; // Le tableau d'adapter pour être afficher
+
     AjouterReunionViewModel mAjouterReunionViewModel; // ViewModele de l'activité
+
 
     /**
      * Activity created
@@ -191,10 +198,10 @@ public class AjouterReunionActivity extends AppCompatActivity {
         List<String> listeSalle = new ArrayList<>(Arrays.asList(mListeSalle));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.liste_num_salle, mListeSalle);
         for (Reunion reunion : mAjouterReunionViewModel.getReunions()) {
-            Date dateSelectionne = new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut);
-            Date dateDebutReunion = reunion.getDebutReunion();
-            Date dateFinReunion = reunion.getFinReunion();
-            if (dateSelectionne.before(dateFinReunion) && dateSelectionne.after(dateDebutReunion) || dateSelectionne.compareTo(dateDebutReunion) == 0) {
+            GregorianCalendar dateSelectionne = new GregorianCalendar (mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut);
+            GregorianCalendar dateDebutReunion = reunion.getDebutReunion();
+            GregorianCalendar dateFinReunion = reunion.getFinReunion();
+            if (dateSelectionne.before(dateFinReunion) && dateSelectionne.after(dateDebutReunion) || dateSelectionne.compareTo(dateDebutReunion)==0  ) {
 
                 listeSalle.remove(reunion.getSalleReu());
                 String[] listeSalles = new String[listeSalle.size()];
@@ -258,7 +265,7 @@ public class AjouterReunionActivity extends AppCompatActivity {
 
             binding.etFin.setError("Veuillez choisir une fin");
         } else {
-            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date, debut, salle, participants, new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut), new Date(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureFin, mMinuteFin)));
+            mAjouterReunionViewModel.ajouterReunions(new Reunion(nom, sujet, date,debut, salle, participants, new GregorianCalendar(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureDebut, mMinuteDebut), new GregorianCalendar(mAnneeChoisi, mMoisChoisi, mJourChoisi, mHeureFin, mMinuteFin)));
             Toast.makeText(this, "Réunion ajoutée", Toast.LENGTH_SHORT).show();
             finish();
         }

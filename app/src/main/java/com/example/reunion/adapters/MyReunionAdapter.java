@@ -17,7 +17,9 @@ import com.example.reunion.databinding.FragmentReunionBinding;
 import com.example.reunion.model.Reunion;
 import com.example.reunion.service.SupprimerReunionService;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.ViewHolder> {
@@ -45,12 +47,14 @@ public class MyReunionAdapter extends RecyclerView.Adapter<MyReunionAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Reunion reunion = mReunions.get(position);
-        Date dateReunion = reunion.getFinReunion();
+        GregorianCalendar dateReunion = reunion.getFinReunion();
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(Calendar.getInstance().getTime());
         holder.tv_nom_reunion.setText(reunion.getNomReunion());
         holder.tv_heure.setText(reunion.getHeureReu());
         holder.tv_salle.setText(reunion.getSalleReu());
         holder.tv_participants.setText(reunion.getParticipants());
-        if (new Date().before(dateReunion)) {
+        if (gregorianCalendar.before(dateReunion)) {
 
             holder.iv_icone_reunion.setColorFilter(Color.argb(200, 94, 203, 32));
         } else {
